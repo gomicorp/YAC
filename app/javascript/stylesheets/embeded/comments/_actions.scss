@@ -1,0 +1,14 @@
+
+#comments-wrapper .comment .comment-actions {
+  .action-link {
+    font-size: 12px;
+    text-decoration: none;
+    color: #6c757d;
+    transition: all 200ms ease-in-out;
+    font-weight: 600;
+
+    &:hover {
+       color: #333;
+    }
+  }
+}

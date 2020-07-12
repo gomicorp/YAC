@@ -1,0 +1,26 @@
+<div class="comment">
+  <%= comment_component.avatar user: @user %>
+
+  <div class="flex-fill">
+    <p class="comment-head">
+      <span class="author-name">Username</span>
+      &middot;
+      <span class="comment-created_at"><%= l(comment.created_at, format: :short) %></span>
+    </p>
+
+    <div class="comment-content">
+      <%= comment.content %>
+    </div>
+
+    <div class="comment-actions pt-1">
+      <a href="#" class="action-link">
+        Reply
+      </a>
+
+      &middot;
+      <a href="#" class="action-link">
+        Hide
+      </a>
+    </div>
+  </div>
+</div>

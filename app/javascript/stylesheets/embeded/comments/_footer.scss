@@ -1,0 +1,15 @@
+#comments-wrapper footer {
+  border-top: 2px solid #e7e9ee;
+
+  .nav {
+    .nav-link {
+      @extend .py-1;
+      padding-left: 0;
+      padding-right: 0;
+
+      .site-logo-alt-text {
+        font-weight: bolder;
+      }
+    }
+  }
+}

@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if Rails.env.development?
+  Organization.create! do |org|
+    org.name = 'YAC'
+
+    org.sites.new do |site|
+      site.name = 'YAC Sample'
+      site.domain = "https://#{ENV['PROXY_URL']}"
+    end
+  end
+end

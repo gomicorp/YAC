@@ -1,0 +1,5 @@
+<% if @user&.profile_image&.attached? %>
+  <%= image_tag 'dummy/embed/noname.png', class: 'avatar', alt: 'Avatar' %>
+<% else %>
+  <%= image_tag 'dummy/embed/noname.png', class: 'avatar', alt: 'Avatar' %>
+<% end %>

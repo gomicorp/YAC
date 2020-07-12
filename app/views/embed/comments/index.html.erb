@@ -1,0 +1,41 @@
+<div id="comments-wrapper">
+  <!-- Star rating -->
+
+  <!-- Main Nav -->
+  <%=
+    comment_component.main_nav(
+      organization: @organization,
+      site: @site,
+      post: @post,
+      comments: @comments
+    )
+  %>
+
+  <!-- Alert -->
+  <% if @post.comments_count.zero? %>
+    <%= comment_component.alert type: :primary, message: 'Yac! You can start the first comment =b' %>
+  <% else %>
+    <%= comment_component.alert type: :primary, message: 'Halo! Did you comment? not? How did you feel that product?' %>
+  <% end %>
+
+  <!-- New comment form -->
+  <%= comment_component.form comment: @post.comments.new, url: embed_post_comments_path(@post) %>
+
+  <!-- Comments thread -->
+  <div class="comments-thread">
+    <span id="newbie-comment-position"></span>
+
+    <%= comment_component.comments @comments %>
+
+    <div id="comments-more-btn-wrapper" class="d-<%= 'none' if @pagy.next.nil? %> text-center w-100 mb-5">
+      <%= js_link_to 'Load more', embed_post_comments_path(@post, page: @pagy.next, format: :js), id: 'comments-more-btn', class: 'btn btn-outline-secondary rounded-pill shadow' %>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <%=
+    comment_component.footer(
+      site: @site,
+    )
+  %>
+</div>

@@ -1,0 +1,30 @@
+@import '../variables/color';
+
+#comments-wrapper #main-nav {
+  .main-nav-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .nav-tabs {
+    border-bottom: $service-border-width solid $service-border-color;
+
+    .nav-link.active,
+    .nav-item.show .nav-link {
+      border-color: $service-border-color $service-border-color #fff;
+      opacity: 1;
+    }
+
+    .nav-link {
+      border-width: $service-border-width;
+      margin-bottom: -$service-border-width;
+      font-size: 14px;
+      color: #495057;
+      opacity: .7;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

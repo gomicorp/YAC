@@ -1,0 +1,41 @@
+<%= form_with model: comment, url: url, local: false, id: 'new-comment-form' do |form| %>
+  <div class="comment-form">
+    <!-- Avatar -->
+    <%= comment_component.avatar user: @user %>
+
+    <!-- Editor -->
+    <div class="field comment-editor-wrapper flex-fill">
+      <%= form.rich_text_area :content, class: 'comment-editor', placeholder: 'Put your awesome comment...' %>
+      <button class="comment-form-submit d-none d-sm-inline-block">Submit</button>
+    </div>
+  </div>
+
+  <div class="w-100 d-flex flex-row-reverse d-sm-none">
+    <button class="btn btn-primary position-relative" style="top: -10px;">Submit</button>
+  </div>
+<% end %>
+
+
+
+
+
+<% if false %>
+  <!-- 이거 가짜임. 잠시 참고용으로 남겨놓은 거. -->
+  <%= form_with(model: [:embed, comment], local: true) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+          <% comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>

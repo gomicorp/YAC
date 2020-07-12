@@ -1,0 +1,151 @@
+@import './comments/main-nav';
+@import './comments/alert';
+@import './comments/actions';
+@import './comments/footer';
+
+#comments-wrapper {
+  @extend .pt-3;
+  //height: 100%;
+
+
+  /**
+   *  Avatar
+   */
+  $avatar-width: 48px;
+  $avatar-width-sm: 38px;
+  $avatar-margin-right: 12px;
+  .avatar {
+    flex-shrink: 0 !important;
+
+    $width: $avatar-width-sm;
+    width: $width;
+    height: $width;
+    margin-right: $avatar-margin-right;
+    border-radius: 3px;
+
+     @media (min-width: 576px) {
+       $width: $avatar-width;
+       width: $width;
+       height: $width;
+     }
+  }
+
+
+  /**
+   *  Comment
+   */
+  .comments-thread {
+    @extend .pt-4;
+  }
+
+  .comment {
+    @extend .mb-4;
+    display: flex;
+    position: relative;
+    width: 100%;
+
+    .comment-head {
+      margin-bottom: 8px;
+      line-height: 1;
+
+      .author-name {
+        font-size: 13px;
+        color: #656c7a;
+        font-weight: 700;
+      }
+
+      .comment-created_at {
+        font-weight: 500;
+        font-size: 11px;
+        color: #687a86;
+      }
+    }
+
+    .comment-content {
+      font-size: 14px;
+
+      .trix-content {
+        line-height: 1.2;
+      }
+    }
+  }
+
+
+  /**
+   *  Comment Form
+   */
+  .comment-form {
+    @extend .mb-4;
+    display: flex;
+    position: relative;
+
+
+    /**
+     *  Comment Editor
+     */
+    .comment-editor-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      background: #fff;
+      border: 2px solid #dbdfe4;
+      position: relative;
+      border-radius: 4px;
+      margin: 0;
+      //max-width: calc(100% - #{$avatar-width} - #{$avatar-margin-right});
+
+      $toolbar-height: 36px;
+      trix-toolbar {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        height: $toolbar-height;
+
+        background: #f6f8f9;
+        border-radius: 0 0 2px 2px;
+        border-top: solid 2px #dbdfe4;
+
+        .trix-button-row {
+          @extend .d-flex;
+          @extend .align-items-center, .w-100;
+          height: $toolbar-height;
+
+          .trix-button-group {
+            @extend .mb-0, .ml-0, .border-0;
+
+            .trix-button {
+              @extend .border-0, .px-0;
+              height: 20px;
+            }
+          }
+        }
+
+        .trix-dialog {
+          border-top: none;
+        }
+      }
+
+      $comment-editor-height: 73px;
+      .comment-editor {
+        border: none;
+        margin-bottom: $toolbar-height;
+        min-height: $comment-editor-height;
+        color: #2a2e2e;
+        font-size: 14px;
+
+        @media (min-width: 576px) {
+          padding-right: 6rem;
+        }
+      }
+
+      $comment-form-submit-height: 38px;
+      .comment-form-submit {
+        @extend .btn, .btn-primary;
+        position: absolute;
+        right: 12px;
+        bottom: calc((#{$comment-editor-height} - #{$comment-form-submit-height}) * 0.5 + #{$toolbar-height});
+      }
+    }
+  }
+}

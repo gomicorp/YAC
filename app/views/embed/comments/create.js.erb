@@ -1,0 +1,4 @@
+commentService.newCommentCreated({
+  commentsCount: '<%= @post.reload.comments_count %>',
+  commentMartUp: '<%= j(render 'embed/comments/components/comment', comment: @comment) %>',
+});

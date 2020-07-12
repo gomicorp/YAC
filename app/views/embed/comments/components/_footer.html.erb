@@ -1,0 +1,17 @@
+<footer>
+  <nav class="nav">
+<!--    <a class="nav-link active" aria-current="page" href="#">Active</a>-->
+<!--    <a class="nav-link" href="#">Link</a>-->
+<!--    <a class="nav-link" href="#">Link</a>-->
+
+    <!-- Site logo image -->
+    <a class="nav-link disabled ml-auto" href="#" tabindex="-1" aria-disabled="true">
+      <% if site.footer_logo.attached? %>
+        <!-- fit in 93x32 -->
+        <%= image_tag site.footer_logo.variant(resize_to_fit: [93, 32]) %>
+      <% else %>
+        <span class="site-logo-alt-text"><%= site.name %></span>
+      <% end %>
+    </a>
+  </nav>
+</footer>
