@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if Rails.env.development?
-  org = Organization.find_or_create_by!(name: 'YAC')
+  org = Organization.find_or_create_by! name: 'YAC'
+  site = org.sites.find_or_create_by! name: 'YAC Sample', domain: ENV['PROXY_URL']
 
-  org.sites.new do |site|
-    site.name = 'YAC Sample'
-    site.domain = ENV['PROXY_URL']
+  10.times do
+    site.posts.create! identifier: site.posts.count + 1
   end
 end

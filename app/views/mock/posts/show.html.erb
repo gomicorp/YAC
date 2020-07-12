@@ -1,0 +1,11 @@
+<div class="bg-light p-5 rounded">
+  <h1>Post #<%= @post.id %></h1>
+  <p class="lead">
+    Organization #<%= @organization.id %> | <%= @organization.name %>
+    <br>
+    Site #<%= @site.id %> | <%= @site.domain %>
+  </p>
+  <a class="btn btn-lg btn-primary" href="<%= mock_posts_path %>">Go to index »</a>
+</div>
+
+<div id="yac-thread" data-identifier="<%= @post.id %>"></div>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mock Site : <%= @site.domain %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <td>comments count</td>
+      <td></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= post.comments_count %></td>
+        <td><%= link_to 'Show', mock_post_path(post) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
