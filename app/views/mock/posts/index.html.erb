@@ -2,11 +2,13 @@
 
 <h1>Mock Site : <%= @site.domain %></h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>id</th>
+      <th>post id</th>
       <td>comments count</td>
+      <td>site_id</td>
+      <td>identifier</td>
       <td></td>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
       <tr>
         <td><%= post.id %></td>
         <td><%= post.comments_count %></td>
+        <td><%= post.site_id %></td>
+        <td><%= post.identifier %></td>
         <td><%= link_to 'Show', mock_post_path(post) %></td>
       </tr>
     <% end %>

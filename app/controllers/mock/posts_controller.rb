@@ -5,7 +5,7 @@ module Mock
     layout 'mock'
 
     def index
-      @posts = Post.all
+      @posts = @site.posts
     end
 
     def show
