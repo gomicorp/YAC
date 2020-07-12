@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
 
   root 'landing#main'
-  get 'sample/index'
+  get 'mock/index'
 
   draw :embed
 end
