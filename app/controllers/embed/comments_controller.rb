@@ -6,7 +6,7 @@ module Embed
 
     layout 'embeded'
 
-    # GET /embed/comments?api_key=&origin=&canonical_url=
+    # GET /embed/comments?api_key=&domain=&identifier=
     # GET /embed/posts/:post_id/comments
     # GET /embed/posts/:post_id/comments.js
     def index
@@ -91,7 +91,7 @@ module Embed
     def set_valid_ancestors
       @organization = Organization.find(params[:api_key])
       @site = permitted_site
-      @post = @site.posts.find_or_create_by!(canonical_url: params[:canonical_url])
+      @post = @site.posts.find_or_create_by!(identifier: params[:identifier])
     end
 
     def set_ancestors
