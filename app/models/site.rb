@@ -27,5 +27,5 @@ class Site < ApplicationRecord
   has_one_attached :footer_logo
   friendly_id :domain
   validates :name, presence: true
-  validates :domain, presence: true, uniqueness: true, format: /\Ahttp(s|):\/\/.*/
+  validates :domain, presence: true, uniqueness: true
 end

@@ -11,8 +11,10 @@ module Embed
     # GET /embed/posts/:post_id/comments.js
     def index
       if params[:post_id].present?
+        # 1. To pagination
         set_ancestors
       else
+        # For general CommentSDK
         set_valid_ancestors
       end
 
@@ -111,9 +113,9 @@ module Embed
 
     def permitted_site
       if any_site_permitted_api_key
-        @organization.sites.find_or_create_by!(domain: params[:origin])
+        @organization.sites.find_or_create_by!(domain: params[:domain])
       else
-        @organization.sites.find(params[:origin])
+        @organization.sites.find(params[:domain])
       end
     end
 

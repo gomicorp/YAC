@@ -11,6 +11,6 @@ if Rails.env.development?
 
   org.sites.new do |site|
     site.name = 'YAC Sample'
-    site.domain = "https://#{ENV['PROXY_URL']}"
+    site.domain = ENV['PROXY_URL']
   end
 end

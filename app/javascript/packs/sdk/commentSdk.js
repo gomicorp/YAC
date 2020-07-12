@@ -11,7 +11,7 @@ class CommentSdk {
     container.innerHTML = '';
 
     url.searchParams.set('api_key', k);
-    url.searchParams.set('origin', w.location.origin);
+    url.searchParams.set('domain', w.location.origin.replace(/http(s|):\/\//, ''));
     url.searchParams.set('location', w.location.href);
     url.searchParams.set('canonical_url', container.dataset.canonical_url);
 

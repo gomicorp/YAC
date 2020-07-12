@@ -3,7 +3,7 @@ namespace :yac do
   task sampled: :environment do
     $stdout.puts Organization.first.sites.create!(
       name: 'YAC Sample',
-      domain: "https://#{ENV['PROXY_URL']}"
+      domain: ENV['PROXY_URL']
     )
   end
 end
