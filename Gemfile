@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'devise'
+gem 'letter_opener', group: :development
+gem 'omniauth-facebook' # 페이스북 로그인
+
 gem 'activeadmin'
 gem 'awesome_print'
 gem 'dotenv-rails'

@@ -24,17 +24,15 @@
       </a>
     </li>
 
-    <li class="nav-item ml-auto dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" data-display="static" aria-expanded="false">Username</a>
-      <ul class="dropdown-menu dropdown-menu-right mt-0 rounded shadow" style="font-size: 14px;">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Separated link</a></li>
-      </ul>
-    </li>
+    <% if user_signed_in? %>
+      <li class="nav-item ml-auto dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" data-display="static" aria-expanded="false">
+          Post as <b><%= current_user.name %></b>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right mt-0 rounded shadow" style="font-size: 14px;">
+          <li><%= link_to 'Log out', destroy_user_session_path(redirect_url: params[:location]), method: :delete, class: 'dropdown-item' %></li>
+        </ul>
+      </li>
+    <% end %>
   </ul>
 </header>

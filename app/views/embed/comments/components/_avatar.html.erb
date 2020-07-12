@@ -1,5 +1,11 @@
-<% if @user&.profile_image&.attached? %>
-  <%= image_tag 'dummy/embed/noname.png', class: 'avatar', alt: 'Avatar' %>
+<% if user_signed_in? %>
+  <% if user&.profile_image&.attached? %>
+    <%= image_tag user.profile_image, class: 'avatar', alt: "#{user.name} 's profile image" %>
+  <% elsif user&.image_url.present? %>
+    <%= image_tag user.image_url, class: 'avatar', alt: "#{user.name} 's profile image" %>
+  <% else %>
+    <%= image_tag 'dummy/embed/noname.png', class: 'avatar', alt: 'Avatar' %>
+  <% end %>
 <% else %>
   <%= image_tag 'dummy/embed/noname.png', class: 'avatar', alt: 'Avatar' %>
 <% end %>

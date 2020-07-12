@@ -71,4 +71,8 @@ export default class IFrame {
 
     iframe.style.height = iframeHeight + 'px';
   }
+
+  __requestLoginRedirect(href) {
+    window.location.href = href;
+  }
 }

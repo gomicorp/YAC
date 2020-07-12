@@ -14,6 +14,7 @@
   $avatar-width: 48px;
   $avatar-width-sm: 38px;
   $avatar-margin-right: 12px;
+
   .avatar {
     flex-shrink: 0 !important;
 
@@ -23,11 +24,11 @@
     margin-right: $avatar-margin-right;
     border-radius: 3px;
 
-     @media (min-width: 576px) {
-       $width: $avatar-width;
-       width: $width;
-       height: $width;
-     }
+    @media (min-width: 576px) {
+      $width: $avatar-width;
+      width: $width;
+      height: $width;
+    }
   }
 
 
@@ -74,6 +75,65 @@
   /**
    *  Comment Form
    */
+  a.stretched-link {
+
+    // 로그인이 안돼있을 때.
+    &:not(.d-none) {
+      & > span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+        margin: auto;
+        text-align: center;
+        line-height: 1;
+        height: 46px;
+        font-size: 22px;
+        opacity: 0.25;
+        transition: all 200ms ease;
+        color: #646c7a;
+        font-weight: bold;
+      }
+
+      & + #new-comment-form {
+        .comment-editor-wrapper {
+          position: relative;
+
+          &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, .6);
+            transition: all 200ms ease;
+          }
+        }
+      }
+
+      // 커서를 올리면.
+      &:hover {
+        & > span {
+          opacity: 1;
+        }
+
+        // 입력창이 막혀있는 폼.
+        & + #new-comment-form {
+          .comment-editor-wrapper {
+            position: relative;
+
+            &:after {
+              background: rgba(255, 255, 255, .9);
+            }
+          }
+        }
+      }
+    }
+  }
+
   .comment-form {
     @extend .mb-4;
     display: flex;
@@ -95,6 +155,7 @@
       //max-width: calc(100% - #{$avatar-width} - #{$avatar-margin-right});
 
       $toolbar-height: 36px;
+
       trix-toolbar {
         position: absolute;
         width: 100%;
@@ -127,6 +188,7 @@
       }
 
       $comment-editor-height: 73px;
+
       .comment-editor {
         border: none;
         margin-bottom: $toolbar-height;
@@ -140,6 +202,7 @@
       }
 
       $comment-form-submit-height: 38px;
+
       .comment-form-submit {
         @extend .btn, .btn-primary;
         position: absolute;

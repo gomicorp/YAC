@@ -37,6 +37,14 @@ const bindOnChangeListenerAtEditorInput = () => {
 onReady(bindOnChangeListenerAtEditorInput);
 
 
+// 소셜 로그인 버튼을 클릭하면, 부모 창의 페이지를 이동시켜줘야 함.
+const bindOnClickListenerAtLoginBtn = () => {
+  const loginBtn = document.querySelector('#loginBtn');
+  loginBtn.addEventListener('click', commentService.__sendMessageToSocialLogin)
+};
+onReady(bindOnClickListenerAtLoginBtn);
+
+
 /**
  * 댓글 생성에 대하여..
  *  댓글 생성 콜백은 'embed/comments/create.js.erb' 에서 호출됩니다.

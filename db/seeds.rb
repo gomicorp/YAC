@@ -7,12 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if Rails.env.development?
-  Organization.create! do |org|
-    org.name = 'YAC'
+  org = Organization.find_or_create_by!(name: 'YAC')
 
-    org.sites.new do |site|
-      site.name = 'YAC Sample'
-      site.domain = "https://#{ENV['PROXY_URL']}"
-    end
+  org.sites.new do |site|
+    site.name = 'YAC Sample'
+    site.domain = "https://#{ENV['PROXY_URL']}"
   end
 end

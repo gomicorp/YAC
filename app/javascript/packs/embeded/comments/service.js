@@ -74,6 +74,16 @@ class CommentService {
       iframeHeight: getCommentServiceFrameHeight(),
     }, '*');
   };
+
+  __sendMessageToSocialLogin(e) {
+    const loginBtn = e.target;
+    console.log(loginBtn.dataset.href);
+
+    parent.postMessage({
+      eventName: 'requestLoginRedirect',
+      loginUrl: loginBtn.dataset.href
+    }, '*');
+  }
 }
 
 export default new CommentService();

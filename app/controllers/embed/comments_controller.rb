@@ -1,5 +1,6 @@
 module Embed
   class CommentsController < ApplicationController
+    before_action :authenticate_user!, except: :index
     before_action :set_ancestors, except: :index
     after_action :allow_valid_iframe, only: :index
 
@@ -15,7 +16,7 @@ module Embed
         set_valid_ancestors
       end
 
-      @pagy, @comments = pagy(@post.comments.with_rich_text_content_and_embeds.order(id: :desc), items: 10)
+      @pagy, @comments = pagy(@post.comments.with_rich_text_content_and_embeds.with_author.order(id: :desc), items: 10)
     end
 
     # => NOT USE
@@ -37,7 +38,9 @@ module Embed
 
     # POST /embed/comments.js
     def create
-      @comment = @post.comments.new(comment_params.merge(remote_ip: request.remote_ip))
+      @comment = @post.comments.new(comment_params.merge(
+        remote_ip: request.remote_ip
+      ))
 
       respond_to do |format|
         # if @comment.save!
@@ -100,7 +103,7 @@ module Embed
     end
 
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:content, :author_id)
     end
 
 

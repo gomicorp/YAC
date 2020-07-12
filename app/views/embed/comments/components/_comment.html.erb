@@ -1,9 +1,9 @@
 <div class="comment">
-  <%= comment_component.avatar user: @user %>
+  <%= comment_component.avatar user: comment.author %>
 
   <div class="flex-fill">
     <p class="comment-head">
-      <span class="author-name">Username</span>
+      <span class="author-name"><%= comment.author.name %></span>
       &middot;
       <span class="comment-created_at"><%= l(comment.created_at, format: :short) %></span>
     </p>
@@ -13,14 +13,18 @@
     </div>
 
     <div class="comment-actions pt-1">
-      <a href="#" class="action-link">
-        Reply
-      </a>
+      <% if user_signed_in? %>
+        <a href="#" class="action-link">
+          Reply
+        </a>
+      <% end %>
 
-      &middot;
-      <a href="#" class="action-link">
-        Hide
-      </a>
+      <% if user_signed_in? && current_user.id == comment.author_id %>
+        &middot;
+        <a href="#" class="action-link">
+          Hide
+        </a>
+      <% end %>
     </div>
   </div>
 </div>
