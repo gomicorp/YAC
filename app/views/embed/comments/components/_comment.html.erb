@@ -1,4 +1,4 @@
-<div class="comment">
+<div id="YAC-Comment-<%= comment.id %>" class="comment <%= 'hide' if comment.hide? %>">
   <%= comment_component.avatar user: comment.author %>
 
   <div class="flex-fill">
@@ -13,17 +13,19 @@
     </div>
 
     <div class="comment-actions pt-1">
-      <% if user_signed_in? %>
-        <a href="#" class="action-link">
-          Reply
-        </a>
+      <%= comment_component.action_link_to_if i_can_reply, '#', class: 'action-link' do %>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-reply-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+        </svg>
+        <span>Reply</span>
       <% end %>
 
-      <% if user_signed_in? && current_user.id == comment.author_id %>
-        &middot;
-        <a href="#" class="action-link">
-          Hide
-        </a>
+      <%= comment_component.action_link_to_if i_can_make_hide(comment), hide_toggle_path(comment), method: :patch, remote: true, class: 'action-link' do %>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-brightness-alt-low-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5 6a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-8.486 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
+          <path fill-rule="evenodd" d="M4 11a4 4 0 1 1 8 0 .5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 11z"/>
+        </svg>
+        <span><%= comment.displayed? ? 'Hide' : 'Display' %></span>
       <% end %>
     </div>
   </div>

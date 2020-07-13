@@ -1,0 +1,3 @@
+commentService.hideComment('<%= @comment.id %>', {
+  commentsCount: '<%= @post.reload.displayed_comments_count %>',
+});

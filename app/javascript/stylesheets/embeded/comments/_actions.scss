@@ -1,5 +1,9 @@
 
 #comments-wrapper .comment .comment-actions {
+  .action-link-dot {
+    display: none;
+  }
+
   .action-link {
     font-size: 12px;
     text-decoration: none;
@@ -10,5 +14,27 @@
     &:hover {
        color: #333;
     }
+
+    & > svg {
+      position: relative;
+      top: -2px;
+    }
+
+    & + .action-link-dot {
+      display: inline-block;
+    }
+  }
+}
+
+
+/**
+ * Toggle Hide
+ */
+#comments-wrapper.current_user_is_admin {
+  .comment.hide {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 12px;
+    border-radius: 3px;
   }
 }

@@ -1,0 +1,8 @@
+<% if condition %>
+  <span class="action-link-dot">&middot;</span>
+  <% if block_given? && block %>
+    <%= link_to name, (option || {}).merge(class: 'action-link'), &block %>
+  <% else %>
+    <%= link_to name, option, (html_options || {}).merge(class: 'action-link') %>
+  <% end %>
+<% end %>

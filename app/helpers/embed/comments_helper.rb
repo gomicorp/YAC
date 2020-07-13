@@ -6,6 +6,22 @@ module Embed
       @comment_component ||= CommentComponent.new(self)
     end
 
+    def i_can_reply
+      user_signed_in?
+    end
+
+    def i_can_make_hide(comment)
+      user_signed_in? && current_user.id == comment.author_id
+    end
+
+    def hide_toggle_path(comment)
+      if comment.displayed?
+        hide_embed_comment_path(comment, format: :js)
+      else
+        display_embed_comment_path(comment, format: :js)
+      end
+    end
+
 
     class CommentComponent < HelperComponent
       def main_nav(**opts)
@@ -30,6 +46,17 @@ module Embed
 
       def comments(collection)
         render partial: 'embed/comments/components/comment', collection: collection, as: :comment
+      end
+
+      def action_link_to_if(condition, name, option = nil, html_options = nil, &block)
+        render(
+          'embed/comments/components/action-link',
+          condition: condition,
+          name: name,
+          option: option,
+          html_options: html_options,
+          block: block
+        )
       end
     end
   end

@@ -18,7 +18,13 @@ module Embed
         set_valid_ancestors
       end
 
-      @pagy, @comments = pagy(@post.comments.with_rich_text_content_and_embeds.with_author.order(id: :desc), items: 10)
+      comments = if user_signed_in? && @organization.admins.where(id: current_user.id).exists?
+                   @post.comments.service_admin_scope
+                 else
+                   @post.comments.service_scope
+                 end
+
+      @pagy, @comments = pagy(comments, items: 10)
     end
 
     # => NOT USE

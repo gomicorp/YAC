@@ -3,7 +3,14 @@ concern :paginatable do
 end
 
 namespace :embed do
-  resources :comments, only: :index
+  resources :comments, only: :index do
+    member do
+      scope controller: 'comments/actions' do
+        patch 'hide', 'display'
+      end
+    end
+  end
+
   resources :posts, only: [] do
     resources :comments, concerns: [:paginatable]
   end

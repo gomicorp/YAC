@@ -37,6 +37,8 @@ class User < ApplicationRecord
 
   has_many :identities, class_name: 'OmniAuthIdentity', dependent: :destroy
   has_many :comments, foreign_key: :author_id
+  has_many :admin_permissions, class_name: 'OrganizationAdminPermission', foreign_key: :admin_id
+  has_many :organizations, through: :admin_permissions
 
   has_one_attached :profile_image
 
@@ -77,5 +79,12 @@ class User < ApplicationRecord
 
   def email_required?
     false
+  end
+
+
+  # === Act as organization admin
+  #
+  def admin_of?(organization)
+    organizations.where(id: organization).exists?
   end
 end

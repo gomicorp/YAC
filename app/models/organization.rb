@@ -18,6 +18,9 @@ class Organization < ApplicationRecord
   has_many :posts, through: :sites
   has_many :comments, through: :posts
 
+  has_many :admin_permissions, class_name: 'OrganizationAdminPermission'
+  has_many :admins, through: :admin_permissions
+
   friendly_id :api_key
   validates :name, presence: true
   validates :api_key, presence: true, uniqueness: true

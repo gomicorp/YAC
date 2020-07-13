@@ -2,14 +2,15 @@
 #
 # Table name: posts
 #
-#  id             :bigint           not null, primary key
-#  canonical_url  :string(255)
-#  comments_count :integer          default(0)
-#  identifier     :string(255)      default(""), not null
-#  thumbnail_url  :string(255)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  site_id        :bigint           not null
+#  id                       :bigint           not null, primary key
+#  canonical_url            :string(255)
+#  comments_count           :integer          default(0)
+#  displayed_comments_count :integer          default(0), not null
+#  identifier               :string(255)      default(""), not null
+#  thumbnail_url            :string(255)
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  site_id                  :bigint           not null
 #
 # Indexes
 #
