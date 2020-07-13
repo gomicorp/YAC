@@ -14,7 +14,7 @@ class CommentService {
    * @param commentMarkUp
    */
   newCommentCreated({ commentsCount, commentMarkUp }) {
-    this.__attachNewCommentMarkup(commentMartUp);
+    this.__attachNewCommentMarkup(commentMarkUp);
     this.__updatePostCommentsCounter(commentsCount);
     this.__clearEditor();
   }
