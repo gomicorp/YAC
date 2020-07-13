@@ -1,3 +1,4 @@
+@import './comments/star-rating';
 @import './comments/main-nav';
 @import './comments/alert';
 @import './comments/actions';
@@ -59,6 +60,15 @@
         font-weight: 500;
         font-size: 11px;
         color: #687a86;
+      }
+
+      .comment-rating {
+        font-size: 11px;
+        color: #ddd;
+
+        .active {
+          color: orange;
+        }
       }
     }
 

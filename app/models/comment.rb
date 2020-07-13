@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  hide_at    :datetime
+#  rating     :integer          default(0), not null
 #  remote_ip  :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -54,17 +55,34 @@ class Comment < ApplicationRecord
     !displayed?
   end
 
+
+  private
+
   # === Callbacks
   #
   def after_save_callback
-    update_counter_cache
+    cmnts = reload.post.comments
+    transaction do
+      update_counter_cache(cmnts)
+      update_rating_on_post(cmnts)
+    end
   end
 
   def after_destroy_callback
-    update_counter_cache
+    transaction do
+      update_counter_cache
+      update_rating_on_post
+    end
   end
 
-  def update_counter_cache
-    post.update(displayed_comments_count: reload.post.comments.displayed.count)
+  def update_counter_cache(cmnts = nil)
+    cmnts ||= reload.post.comments
+    post.update(displayed_comments_count: cmnts.displayed.count)
+  end
+
+  def update_rating_on_post(cmnts = nil)
+    cmnts ||= reload.post.comments
+    cmnts = cmnts.displayed
+    post.update(rating_avg: (cmnts.sum(:rating).to_f / cmnts.count).round(1))
   end
 end

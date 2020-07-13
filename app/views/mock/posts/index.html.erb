@@ -6,9 +6,11 @@
   <thead>
     <tr>
       <th>post id</th>
-      <td>comments count</td>
       <td>site_id</td>
       <td>identifier</td>
+      <td>comments count</td>
+      <td>displayed_comments_count</td>
+      <td>rating_avg</td>
       <td></td>
     </tr>
   </thead>
@@ -17,9 +19,11 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.id %></td>
-        <td><%= post.comments_count %></td>
         <td><%= post.site_id %></td>
         <td><%= post.identifier %></td>
+        <td><%= post.comments_count %></td>
+        <td><%= post.displayed_comments_count %></td>
+        <td><%= post.rating_avg %></td>
         <td><%= link_to 'Show', mock_post_path(post) %></td>
       </tr>
     <% end %>

@@ -111,7 +111,7 @@ module Embed
     end
 
     def comment_params
-      params.require(:comment).permit(:content, :author_id)
+      params.require(:comment).permit(:content, :author_id, :rating)
     end
 
 

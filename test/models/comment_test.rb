@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  hide_at    :datetime
+#  rating     :integer          default(0), not null
 #  remote_ip  :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

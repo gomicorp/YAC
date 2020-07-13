@@ -6,6 +6,12 @@
       <span class="author-name"><%= comment.author.name %></span>
       &middot;
       <span class="comment-created_at"><%= l(comment.created_at, format: :short) %></span>
+      &middot;
+      <span class="comment-rating">
+        <% 5.times do |i| %>
+          <span class="fa fa-star <%= 'active' if (i + 1) <= comment.rating %>"></span>
+        <% end %>
+      </span>
     </p>
 
     <div class="comment-content">

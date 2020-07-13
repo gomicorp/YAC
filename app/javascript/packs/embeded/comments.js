@@ -45,6 +45,30 @@ const bindOnClickListenerAtLoginBtn = () => {
 onReady(bindOnClickListenerAtLoginBtn);
 
 
+// 별점 평가 체크박스가 체크되면, 이를 해당 라벨들의 상태로 옮겨줍니다.
+const bindOnChangeListenerAtStarRatingInput = () => {
+  // 폼 내에 별점 인풋 라디오들을 순회한다.
+  document.querySelectorAll('.rating__input').forEach((input) => {
+    // 라디오 인풋 각각의 값이 변경되었을 때
+    input.addEventListener('change', (e) => {
+      // 변경이 반영되어야 할 별점 아이템들을 가져와 순회한다.
+      document.querySelectorAll(`label[for=${input.id}]`).forEach((targetLabel) => {
+        // 해당 별점 아이템이 포함된 별점 UI의 전체 아이템을 순회한다.
+        const labels = targetLabel.parentElement.querySelectorAll('label.rating__label');
+        labels.forEach((label) => {
+          // 원래 변경이 반영되어야 할 아이템인 경우 마킹해주고, 반대의 경우 마킹을 지워준다.
+          if (label === targetLabel) {
+            label.classList.add('active');
+          } else {
+            label.classList.remove('active');
+          }
+        })
+      });
+    });
+  })
+}
+onReady(bindOnChangeListenerAtStarRatingInput);
+
 /**
  * 댓글 생성에 대하여..
  *  댓글 생성 콜백은 'embed/comments/create.js.erb' 에서 호출됩니다.

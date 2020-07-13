@@ -1,5 +1,29 @@
 <div id="comments-wrapper" class="<%= 'current_user_is_admin' if current_user %>">
-  <!-- Star rating -->
+
+  <% if i_can_comment(@comments) %>
+    <!-- Star rating -->
+    <div id="YAC-star-rating" class="mb-3">
+      <p>How did you fill?</p>
+
+      <div class="rating-group">
+        <label aria-label="0 star" class="rating__label active" for="star_rating-0"><i class="rating__icon rating__icon--star fa fa-star d-none"></i></label>
+        <label aria-label="1 star" class="rating__label" for="star_rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="2 stars" class="rating__label" for="star_rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="3 stars" class="rating__label" for="star_rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="4 stars" class="rating__label" for="star_rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="5 stars" class="rating__label" for="star_rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+      </div>
+
+      <p class="mb-0" style="font-size: 13px"></p>
+    </div>
+  <% end %>
+
+  <!-- Alert -->
+  <% if @post.displayed_comments_count.zero? %>
+    <%= comment_component.alert type: :primary, message: 'Yac! You can start the first comment =b' %>
+  <% else %>
+    <%= comment_component.alert type: :primary, message: 'Halo! Did you comment? not? How did you feel that product?' %>
+  <% end %>
 
   <!-- Main Nav -->
   <%=
@@ -11,15 +35,12 @@
     )
   %>
 
-  <!-- Alert -->
-  <% if @post.comments_count.zero? %>
-    <%= comment_component.alert type: :primary, message: 'Yac! You can start the first comment =b' %>
-  <% else %>
-    <%= comment_component.alert type: :primary, message: 'Halo! Did you comment? not? How did you feel that product?' %>
-  <% end %>
+  <br>
 
-  <!-- New comment form -->
-  <%= comment_component.form comment: @post.comments.new, url: embed_post_comments_path(@post) %>
+  <% if i_can_comment(@comments) %>
+    <!-- New comment form -->
+    <%= comment_component.form comment: @post.comments.new, url: embed_post_comments_path(@post) %>
+  <% end %>
 
   <!-- Comments thread -->
   <div class="comments-thread">

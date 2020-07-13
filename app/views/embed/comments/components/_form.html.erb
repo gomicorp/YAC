@@ -11,6 +11,29 @@
   <% end %>
 
   <%= form_with model: comment, url: url, local: false, id: 'new-comment-form' do |form| %>
+    <br>
+
+    <input disabled checked class="rating__input rating__input--none" name="comment[rating]" id="star_rating-0" value="0" type="radio">
+    <input class="rating__input" name="comment[rating]" id="star_rating-1" value="1" type="radio">
+    <input class="rating__input" name="comment[rating]" id="star_rating-2" value="2" type="radio">
+    <input class="rating__input" name="comment[rating]" id="star_rating-3" value="3" type="radio">
+    <input class="rating__input" name="comment[rating]" id="star_rating-4" value="4" type="radio">
+    <input class="rating__input" name="comment[rating]" id="star_rating-5" value="5" type="radio">
+
+    <div class="nav mb-1">
+      <div class="mr-2" style="font-size: 12px">
+        <span>Select your rate: </span>
+      </div>
+      <div class="rating-group" style="font-size: 12px;">
+        <label aria-label="0 star" class="rating__label active" for="star_rating-0"><i class="rating__icon rating__icon--star fa fa-star d-none"></i></label>
+        <label aria-label="1 star" class="rating__label" for="star_rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="2 stars" class="rating__label" for="star_rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="3 stars" class="rating__label" for="star_rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="4 stars" class="rating__label" for="star_rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="5 stars" class="rating__label" for="star_rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+      </div>
+    </div>
+
     <div class="comment-form">
       <!-- Avatar -->
       <%= comment_component.avatar user: (user_signed_in? ? current_user : @user) %>
@@ -18,10 +41,14 @@
         <%= form.hidden_field :author_id, value: current_user.id %>
       <% end %>
 
-      <!-- Editor -->
-      <div class="field comment-editor-wrapper flex-fill">
-        <%= form.rich_text_area :content, class: 'comment-editor', placeholder: 'Put your awesome comment...' %>
-        <button class="comment-form-submit d-none d-sm-inline-block">Submit</button>
+      <div class="flex-fill">
+
+
+        <!-- Editor -->
+        <div class="field comment-editor-wrapper flex-fill">
+          <%= form.rich_text_area :content, class: 'comment-editor', placeholder: 'Put your awesome comment...' %>
+          <button class="comment-form-submit d-none d-sm-inline-block">Submit</button>
+        </div>
       </div>
     </div>
 

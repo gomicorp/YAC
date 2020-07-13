@@ -6,6 +6,10 @@ module Embed
       @comment_component ||= CommentComponent.new(self)
     end
 
+    def i_can_comment(comments)
+      user_signed_in? && comments.where(author_id: current_user.id).empty?
+    end
+
     def i_can_reply
       user_signed_in?
     end

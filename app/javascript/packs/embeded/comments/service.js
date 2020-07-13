@@ -13,10 +13,11 @@ class CommentService {
    * @param commentsCount
    * @param commentMarkUp
    */
-  newCommentCreated({ commentsCount, commentMarkUp }) {
+  newCommentCreated({ commentsCount, ratingAvg, commentMarkUp }) {
     this.__attachNewCommentMarkup(commentMarkUp);
     this.__updatePostCommentsCounter(commentsCount);
-    this.__clearEditor();
+    this.__updatePostRatingAvg(ratingAvg);
+    this.__formOut();
   }
 
   /**
@@ -71,6 +72,13 @@ class CommentService {
     });
   }
 
+  __updatePostRatingAvg(commentsRatingAvg) {
+    const counters = document.querySelectorAll('.post-avg_star_rate');
+    counters.forEach(counter => {
+      counter.innerText = commentsRatingAvg.toString();
+    });
+  }
+
   __attachNewCommentMarkup(markup) {
     const positionMark = document.querySelector('#newbie-comment-position');
     const temp = document.createElement('span');
@@ -100,6 +108,18 @@ class CommentService {
     temp.innerHTML = markup;
     moreBtnWrapper.before(temp);
     this.__sendMessageToUpdateScreenSize();
+  }
+
+  __formOut() {
+    this.__removeStarRating();
+    // this.__clearEditor();
+    const form = document.querySelector('#new-comment-form');
+    form.remove();
+  }
+
+  __removeStarRating() {
+    const starRagingUIInHeader = document.querySelector('#YAC-star-rating');
+    starRagingUIInHeader.remove();
   }
 
   __clearEditor() {
