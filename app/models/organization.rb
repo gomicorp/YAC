@@ -26,11 +26,12 @@ class Organization < ApplicationRecord
   validates :api_key, presence: true, uniqueness: true
 
   before_validation :set_api_key, on: :create
+  after_initialize :set_api_key
 
 
   private
 
   def set_api_key
-    self.api_key = SecureRandom.uuid
+    self.api_key ||= SecureRandom.uuid
   end
 end
