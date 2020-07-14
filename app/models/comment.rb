@@ -83,6 +83,9 @@ class Comment < ApplicationRecord
   def update_rating_on_post(cmnts = nil)
     cmnts ||= reload.post.comments
     cmnts = cmnts.displayed
-    post.update(rating_avg: (cmnts.sum(:rating).to_f / cmnts.count).round(1))
+
+    sum = cmnts.sum(:rating)
+    avg = sum.zero? ? 0 : (sum.to_f / cmnts.count).round(1)
+    post.update(rating_avg: avg)
   end
 end

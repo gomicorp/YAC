@@ -7,7 +7,11 @@ module Embed
     end
 
     def i_can_comment(comments)
-      user_signed_in? && comments.where(author_id: current_user.id).empty?
+      if user_signed_in?
+        comments.where(author_id: current_user.id).empty?
+      else
+        true
+      end
     end
 
     def i_can_reply
