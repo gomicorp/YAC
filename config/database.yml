@@ -15,9 +15,9 @@ default: &default
   collate: utf8mb4_general_ci
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: <%= ENV['DATABASE_HOST'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= Rails.application.credentials.dig(:rds, :host) %>
+  username: <%= Rails.application.credentials.dig(:rds, :username) %>
+  password: <%= Rails.application.credentials.dig(:rds, :password) %>
 
 development:
   <<: *default
