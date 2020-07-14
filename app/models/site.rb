@@ -24,8 +24,17 @@ class Site < ApplicationRecord
   has_many :posts, class_name: 'Post', dependent: :destroy
   has_many :comments, through: :posts
 
+  has_many :settings, dependent: :destroy
+  has_one :setting, -> { order(id: :desc).limit(1) }
+
   has_one_attached :footer_logo
   friendly_id :domain
   validates :name, presence: true
   validates :domain, presence: true, uniqueness: true
+
+  after_create :after_create_callback
+
+  def after_create_callback
+    settings.create! if settings.empty?
+  end
 end

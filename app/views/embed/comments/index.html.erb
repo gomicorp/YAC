@@ -1,29 +1,25 @@
 <div id="comments-wrapper" class="<%= 'current_user_is_admin' if current_user %>">
 
-  <% if i_can_comment(@comments) %>
-    <!-- Star rating -->
-    <div id="YAC-star-rating" class="mb-3">
-      <p>How did you fill?</p>
+  <!-- Star rating -->
+  <div id="YAC-star-rating" class="mb-3">
+    <p class="h1 text-secondary"><span class="post-avg_star_rate"><%= @post.rating_avg %></span></p>
+    <p class="h5 text-secondary">Average ratings</p>
 
-      <div class="rating-group">
-        <label aria-label="0 star" class="rating__label active" for="star_rating-0"><i class="rating__icon rating__icon--star fa fa-star d-none"></i></label>
-        <label aria-label="1 star" class="rating__label" for="star_rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <label aria-label="2 stars" class="rating__label" for="star_rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <label aria-label="3 stars" class="rating__label" for="star_rating-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <label aria-label="4 stars" class="rating__label" for="star_rating-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <label aria-label="5 stars" class="rating__label" for="star_rating-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-      </div>
-
-      <p class="mb-0" style="font-size: 13px"></p>
+    <div class="rating-group rating-group-lg">
+      <% 5.times do |i| %>
+        <span class="fa fa-star rating-item disabled <%= 'active' if (i + 1) <= @post.rating_avg.round %>"></span>
+      <% end %>
     </div>
-  <% end %>
+
+    <p class="mb-0" style="font-size: 13px"></p>
+  </div>
 
   <!-- Alert -->
-  <% if @post.displayed_comments_count.zero? %>
-    <%= comment_component.alert type: :primary, message: 'Yac! You can start the first comment =b' %>
-  <% else %>
-    <%= comment_component.alert type: :primary, message: 'Halo! Did you comment? not? How did you feel that product?' %>
-  <% end %>
+  <%# if @post.displayed_comments_count.zero? %>
+    <%#= comment_component.alert type: :primary, message: 'Yac! You can start the first comment =b' %>
+  <%# else %>
+    <%#= comment_component.alert type: :primary, message: 'Halo! Did you comment? not? How did you feel that product?' %>
+  <%# end %>
 
   <!-- Main Nav -->
   <%=
@@ -36,7 +32,7 @@
   %>
 
   <br>
-
+  <br>
   <% if i_can_comment(@comments) %>
     <!-- New comment form -->
     <%= comment_component.form comment: @post.comments.new, url: embed_post_comments_path(@post) %>

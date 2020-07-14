@@ -69,9 +69,10 @@ class Comment < ApplicationRecord
   end
 
   def after_destroy_callback
+    cmnts = post.reload.comments
     transaction do
-      update_counter_cache
-      update_rating_on_post
+      update_counter_cache cmnts
+      update_rating_on_post cmnts
     end
   end
 

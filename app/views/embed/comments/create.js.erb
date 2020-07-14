@@ -1,5 +1,0 @@
-commentService.newCommentCreated({
-  commentsCount: '<%= @post.reload.displayed_comments_count %>',
-  ratingAvg: '<%= @post.reload.rating_avg %>',
-  commentMarkUp: '<%= j(render 'embed/comments/components/comment', comment: @comment) %>',
-});

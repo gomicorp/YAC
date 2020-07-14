@@ -1,12 +1,7 @@
+@import '../variables/breakpoint';
 @import '../variables/color';
 
 #comments-wrapper #main-nav {
-  .main-nav-icon {
-    font-size: 18px;
-    line-height: 1;
-    margin-right: 3px;
-  }
-
   .nav-tabs {
     border-bottom: $service-border-width solid $service-border-color;
 
@@ -14,6 +9,24 @@
     .nav-item.show .nav-link {
       border-color: $service-border-color $service-border-color #fff;
       opacity: 1;
+    }
+
+    .nav-item:last-child .nav-link {
+      padding-right: 0;
+      border-color: transparent !important;
+
+      @include media-breakpoint-down(sm) {
+        text-align: right;
+        width: 50%;
+      }
+    }
+
+    .dropdown-menu {
+      font-size: 14px;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 12px;
+      }
     }
 
     .nav-link {
@@ -25,6 +38,20 @@
 
       &:hover {
         opacity: 1;
+      }
+
+      .main-nav-icon {
+        font-size: 18px;
+        line-height: 1;
+        margin-right: 3px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 12px;
+
+        .main-nav-icon {
+          font-size: 14px;
+        }
       }
     }
   }

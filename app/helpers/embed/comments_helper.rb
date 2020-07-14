@@ -8,7 +8,10 @@ module Embed
 
     def i_can_comment(comments)
       if user_signed_in?
-        comments.where(author_id: current_user.id).empty?
+        # 내가 작선한 글이 아직 없거나
+        comments.where(author_id: current_user.id).empty? ||
+          # 반복 작성이 가능하게 설정된 사이트일 때.
+          comments.first.post.site.setting.comment_repeatable
       else
         true
       end

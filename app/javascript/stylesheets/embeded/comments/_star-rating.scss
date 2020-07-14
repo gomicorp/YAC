@@ -4,7 +4,30 @@
 }
 
 
+.rating-group {
+  display: inline-flex;
+  align-items: center;
 
+  &.rating-group-lg {
+    font-size: 36px !important;
+    height: 50px !important;
+  }
+
+  .rating-item {
+    color: #ddd;
+    cursor: pointer;
+    padding: 0 0.1em;
+    font-size: inherit;
+
+    &.active {
+      color: orange;
+    }
+
+    &.disabled {
+      cursor: inherit;
+    }
+  }
+}
 
 
 #YAC-star-rating,

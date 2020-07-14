@@ -81,7 +81,6 @@ class User < ApplicationRecord
     false
   end
 
-
   # === Act as organization admin
   #
   def admin_of?(organization)
