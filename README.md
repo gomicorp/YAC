@@ -1,6 +1,13 @@
 # YAC, your awesome comment
 
 ## 서비스 가이드
+
+```
+# 2020-07-14 기준.
+
+SERVICE-SDK-ADDRESS=https://yac.gomicorp.vn/packs/js/sdk-a5377a848e2f8aa30246.js
+```
+
 1. (!) 조직 생성  
 `api_key` 를 얻습니다.
 

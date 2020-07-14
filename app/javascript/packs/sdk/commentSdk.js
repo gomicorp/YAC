@@ -6,7 +6,7 @@ class CommentSdk {
 
     const w = window;
     const container = document.getElementById('yac-thread');
-    const url = new URL('http://ec2-54-254-146-108.ap-southeast-1.compute.amazonaws.com/embed/comments'); //?api_key='+k;
+    const url = new URL('httpis://yac.gomicorp.vn/embed/comments'); //?api_key='+k;
 
     container.innerHTML = '';
 
