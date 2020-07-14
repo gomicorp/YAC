@@ -1,0 +1,28 @@
+function loadScript(id, src, callback) {
+  var existingScript = document.getElementById(id);
+
+  if (!existingScript) {
+    var insertPoint = document.getElementsByTagName('script')[0];
+    var scriptTag = document.createElement('script');
+    scriptTag.src = src;
+    scriptTag.onload = function() {
+      if (callback) callback();
+      if (!id) scriptTag.remove();
+    };
+    scriptTag.async = true;
+    insertPoint.parentNode.insertBefore(scriptTag, insertPoint);
+  }
+
+  if (existingScript && callback) callback();
+}
+
+
+window.YACHost = '<%= root_url %>';
+
+
+/**
+ * Import & Initialize Attention module.
+ */
+loadScript('YAC-sdk', '<%= asset_pack_url 'sdk.js' %>', function() {
+  YAC.commentSdk.render('<%= params[:api_key] %>');
+});

@@ -317,7 +317,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'YAC Admin Revision v0.1'
 
   # == Sorting
   #
@@ -332,4 +332,10 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   config.use_webpacker = true
+
+  # == Routes
+  #
+  config.namespace :admin do |admin|
+    admin.route_options = { constraints: { id: /[^\/]+/ } }
+  end
 end

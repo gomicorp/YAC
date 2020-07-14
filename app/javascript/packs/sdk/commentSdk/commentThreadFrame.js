@@ -1,4 +1,4 @@
-import IFrame from '../helpers/iFrame';
+import IFrame from '../../helpers/iFrame';
 
 export default class CommentThreadFrame extends IFrame {
   constructor(args) {

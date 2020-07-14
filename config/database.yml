@@ -15,9 +15,9 @@ default: &default
   collate: utf8mb4_general_ci
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: <%= Rails.application.credentials.dig(:rds, :host) %>
-  username: <%= Rails.application.credentials.dig(:rds, :username) %>
-  password: <%= Rails.application.credentials.dig(:rds, :password) %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -52,3 +52,6 @@ test:
 production:
   <<: *default
   database: yac_production
+  host: <%= Rails.application.credentials.dig(Rails.env.to_sym, :database, :host) %>
+  username: <%= Rails.application.credentials.dig(Rails.env.to_sym, :database, :username) %>
+  password: <%= Rails.application.credentials.dig(Rails.env.to_sym, :database, :password) %>

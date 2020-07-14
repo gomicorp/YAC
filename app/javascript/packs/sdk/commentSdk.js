@@ -1,4 +1,4 @@
-import CommentThreadFrame from './commentThreadFrame';
+import CommentThreadFrame from './commentSdk/commentThreadFrame';
 
 class CommentSdk {
   render(k) {
@@ -6,7 +6,7 @@ class CommentSdk {
 
     const w = window;
     const container = document.getElementById('yac-thread');
-    const url = new URL('https://yac.gomicorp.vn/embed/comments'); //?api_key='+k;
+    const url = new URL(window.YACHost+'/embed/comments'); //?api_key='+k;
 
     container.innerHTML = '';
 

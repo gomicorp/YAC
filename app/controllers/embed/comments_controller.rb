@@ -1,10 +1,19 @@
 module Embed
   class CommentsController < ApplicationController
-    before_action :authenticate_user!, except: :index
-    before_action :set_ancestors, except: :index
+    skip_before_action :verify_authenticity_token, only: :sdk
+    before_action :authenticate_user!, except: %i[sdk index]
+    before_action :set_ancestors, except: %i[sdk index]
     after_action :allow_valid_iframe, only: :index
 
     layout 'embeded'
+
+    def sdk
+      puts "\n\n\n\n\n\n\n\n\n"
+      puts sdk_embed_comments_url(format: :js)
+      puts "\n\n\n\n\n\n\n\n\n"
+      allow_valid_iframe
+      render layout: false
+    end
 
     # GET /embed/comments?api_key=&domain=&identifier=
     # GET /embed/posts/:post_id/comments

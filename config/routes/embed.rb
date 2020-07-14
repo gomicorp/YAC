@@ -9,6 +9,10 @@ namespace :embed do
         patch 'hide', 'display'
       end
     end
+
+    collection do
+      get 'sdk'
+    end
   end
 
   resources :posts, only: [] do
