@@ -1,19 +1,12 @@
 <p class="h6 text-secondary"><b>How did you fill?</b></p>
 
 <div class="position-relative">
-  <%= link_to(
-        'javascript:void(0)',
-        id: 'loginBtn',
-        class: "stretched-link #{'d-none' if user_signed_in?}",
-        data: {
-          href: user_facebook_omniauth_authorize_url(state: params[:location])
-        }
-      ) do %>
+  <a id="loginBtn" href="javascript:void(0);" class="stretched-link <%= 'd-none' if user_signed_in? %>" data-href="<%= user_facebook_omniauth_authorize_url(state: params[:location]) %>">
     <span>
-      <button class="btn btn-primary"><span class="fab fa-facebook-square mr-2"></span> Open comment form</button>
+      <button class="btn btn-primary" data-href="<%= user_facebook_omniauth_authorize_url(state: params[:location]) %>"><span class="fab fa-facebook-square mr-2"></span> Open comment form</button>
       <span class="host-plugin"><%= @site.name %> play with <span class="d-block">YAC Plugin.</span></span>
     </span>
-  <% end %>
+  </a>
 
   <%= form_with model: comment, url: url, local: false, id: 'new-comment-form' do |form| %>
     <input disabled checked class="rating__input rating__input--none" name="comment[rating]" id="star_rating-0" value="0" type="radio">

@@ -1,3 +1,5 @@
+require_relative '../../../config/initializers/helper_component'
+
 module Embed
   module CommentsHelper
     # include HelperComponent::Factory
@@ -34,7 +36,7 @@ module Embed
     end
 
 
-    class CommentComponent < HelperComponent
+    class CommentComponent < ::HelperComponent
       def main_nav(**opts)
         render 'embed/comments/components/main-nav', **opts
       end

@@ -338,4 +338,10 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.route_options = { constraints: { id: /[^\/]+/ } }
   end
+
+  # == Strong Parameters
+  #
+  config.before_action do
+    params.permit!
+  end
 end
