@@ -53,7 +53,15 @@ module Embed
     end
 
 
-    class CommentComponent < ::HelperComponent
+    class CommentComponent
+      def initialize(view)
+        @view = view
+      end
+
+      def render(options = {}, locals = {}, &block)
+        @view.render(options, locals, &block)
+      end
+
       def main_nav(**opts)
         render 'embed/comments/components/main-nav', **opts
       end
