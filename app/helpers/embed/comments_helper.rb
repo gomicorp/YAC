@@ -58,36 +58,32 @@ module Embed
         @view = view
       end
 
-      def render(options = {}, locals = {}, &block)
-        @view.render(options, locals, &block)
-      end
-
       def main_nav(**opts)
-        render 'embed/comments/components/main-nav', **opts
+        @view.render 'embed/comments/components/main-nav', **opts
       end
 
       def alert(**opts)
-        render 'embed/comments/components/alert', **opts
+        @view.render 'embed/comments/components/alert', **opts
       end
 
       def footer(**opts)
-        render 'embed/comments/components/footer', **opts
+        @view.render 'embed/comments/components/footer', **opts
       end
 
       def form(**opts)
-        render 'embed/comments/components/form', **opts
+        @view.render 'embed/comments/components/form', **opts
       end
 
       def avatar(**opts)
-        render 'embed/comments/components/avatar', **opts
+        @view.render 'embed/comments/components/avatar', **opts
       end
 
       def comments(collection)
-        render partial: 'embed/comments/components/comment', collection: collection, as: :comment
+        @view.render partial: 'embed/comments/components/comment', collection: collection, as: :comment
       end
 
       def action_link_to_if(condition, name, option = nil, html_options = nil, &block)
-        render(
+        @view.render(
           'embed/comments/components/action-link',
           condition: condition,
           name: name,
