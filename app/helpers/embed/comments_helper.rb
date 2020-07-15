@@ -1,22 +1,3 @@
-require_relative '../../../config/initializers/helper_component'
-
-class HelperComponent
-  def initialize(view)
-    @view = view
-  end
-
-  def render(options = {}, locals = {}, &block)
-    @view.render(options, locals, &block)
-  end
-
-  module Factory
-    def self.declare_component_interface_of(component_classname)
-      Object.const_get(component_classname).new(self)
-    end
-  end
-end
-
-
 module Embed
   module CommentsHelper
     # include HelperComponent::Factory
@@ -53,37 +34,33 @@ module Embed
     end
 
 
-    class CommentComponent
-      def initialize(view)
-        @view = view
-      end
-
+    class CommentComponent < ::HelperComponent
       def main_nav(**opts)
-        @view.render 'embed/comments/components/main-nav', **opts
+        render 'embed/comments/components/main-nav', **opts
       end
 
       def alert(**opts)
-        @view.render 'embed/comments/components/alert', **opts
+        render 'embed/comments/components/alert', **opts
       end
 
       def footer(**opts)
-        @view.render 'embed/comments/components/footer', **opts
+        render 'embed/comments/components/footer', **opts
       end
 
       def form(**opts)
-        @view.render 'embed/comments/components/form', **opts
+        render 'embed/comments/components/form', **opts
       end
 
       def avatar(**opts)
-        @view.render 'embed/comments/components/avatar', **opts
+        render 'embed/comments/components/avatar', **opts
       end
 
       def comments(collection)
-        @view.render partial: 'embed/comments/components/comment', collection: collection, as: :comment
+        render partial: 'embed/comments/components/comment', collection: collection, as: :comment
       end
 
       def action_link_to_if(condition, name, option = nil, html_options = nil, &block)
-        @view.render(
+        render(
           'embed/comments/components/action-link',
           condition: condition,
           name: name,
