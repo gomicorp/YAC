@@ -2,33 +2,21 @@
 
 ## 서비스 가이드
 
-```
-# 2020-07-14 기준.
-
-SERVICE-SDK-ADDRESS=https://yac.gomicorp.vn/packs/js/sdk-a5377a848e2f8aa30246.js
-```
-
-1. (!) 조직 생성  
+1. (ActiveAdmin) 조직 생성  
 `api_key` 를 얻습니다.
 
-1. (!) 연동할 사이트 도메인을 등록  
+1. (ActiveAdmin) 연동할 사이트 도메인을 등록  
 `http:// or https://` 를 제거한 도메인이어야 합니다. (SSL 적용여부와 관계없이 동일 서비스임을 인식)
 
-1. 스크립트 설치
+1. 스크립트 설치  
+연동하려는 사이트의 HTML 을 편집해야 합니다.
     1. `<head>` 내에 sdk 삽입
         ```html
-        ...
-        <script src="<SERVICE-SDK-ADDRESS>"></script>
+        <script src="https://yac.gomicorp.vn/embed/comments/sdk.js?api_key=<API_KEY>"></script>
         ```
     1. 서비스가 임베드될 위치를 잡아준다.
         ```html
         <div id="yac-thread" data-identifier="<UNIQ-KEY-OF-POST>"></div>
-        ```
-    1. 그 아래에서 서비스 실행 스크립트를 넣어준다.
-        ```html
-        <script>
-          YAC.commentSdk.render('<API-KEY>');
-        </script>
         ```
        
 1. 서비스를 실행시킨 후, 서비스를 통해 페이스북으로 로그인.  
