@@ -9,7 +9,10 @@
           href: user_facebook_omniauth_authorize_url(state: params[:location])
         }
       ) do %>
-    <span>Click to login and putting a comment.</span>
+    <span>
+      <button class="btn btn-primary"><span class="fab fa-facebook-square mr-2"></span> Open comment form</button>
+      <span class="host-plugin"><%= @site.name %> play with <span class="d-block">YAC Plugin.</span></span>
+    </span>
   <% end %>
 
   <%= form_with model: comment, url: url, local: false, id: 'new-comment-form' do |form| %>

@@ -1,3 +1,5 @@
+$text-bold-color: #646c7a;
+
 @import './comments/star-rating';
 @import './comments/main-nav';
 @import './comments/alert';
@@ -89,28 +91,47 @@
 
     // 로그인이 안돼있을 때.
     &:not(.d-none) {
+      // 노출 텍스트 : 기본
       & > span {
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
-        z-index: 1;
+        z-index: 2;
         margin: auto;
         text-align: center;
         line-height: 1;
-        height: 46px;
+        height: 38px;
         font-size: 22px;
-        opacity: 0.25;
         transition: all 200ms ease;
-        color: #646c7a;
+        color: lighten($text-bold-color, 10%);
         font-weight: bold;
+
+        .host-plugin {
+          display: block;
+          position: absolute;
+          left: 0;
+          right: 0;
+          text-align: right;
+          font-size: 10px;
+          width: 202.09px;
+          margin: 2px auto;
+          line-height: 1.2;
+        }
+      }
+
+      // overlay
+      &:after {
+        background: rgba(255, 255, 255, .8);
       }
 
       & + #new-comment-form {
         .comment-editor-wrapper {
           position: relative;
+          //border-color: lighten(#dbdfe4, 10%);
 
+          // form 오버레이
           &:after {
             content: '';
             position: absolute;
@@ -118,7 +139,7 @@
             right: 0;
             top: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, .6);
+            //background: rgba(255, 255, 255, .8);
             transition: all 200ms ease;
           }
         }
@@ -126,8 +147,10 @@
 
       // 커서를 올리면.
       &:hover {
+        // 노출 텍스트 : 호버
         & > span {
-          opacity: 1;
+          color: darken($text-bold-color, 10%);
+          text-decoration: underline;
         }
 
         // 입력창이 막혀있는 폼.
@@ -136,7 +159,6 @@
             position: relative;
 
             &:after {
-              background: rgba(255, 255, 255, .9);
             }
           }
         }
