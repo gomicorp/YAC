@@ -6,7 +6,7 @@ class CommentSdk {
 
     const w = window;
     const container = document.getElementById('yac-thread');
-    const url = new URL(window.YACHost+'/embed/comments'); //?api_key='+k;
+    const url = new URL(window.YACHost + '/embed/comments'); //?api_key='+k;
 
     container.innerHTML = '';
 
@@ -20,6 +20,9 @@ class CommentSdk {
       src: url.toString(),
       width: '100%',
       classList: ['yac-frame'],
+      sandbox: ['allow-storage-access-by-user-activation',
+        'allow-scripts',
+        'allow-same-origin']
     });
 
     this.iframe.appendChildInto(container);

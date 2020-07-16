@@ -13,6 +13,14 @@ require("@rails/actiontext")
 import 'bootstrap'
 import '@fortawesome/fontawesome-free/js/all'
 
+if (document.hasStorageAccess) {
+  document.hasStorageAccess().then(hasAccess => {
+    if (!hasAccess) {
+      return document.requestStorageAccess();
+    }
+  })
+}
+
 import './embeded/comments'
 
 // Uncomment to copy all static images under ../images to the output folder and reference
