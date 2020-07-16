@@ -20,7 +20,7 @@
           <b><%= current_user.name %></b>
         </a>
         <ul class="dropdown-menu dropdown-menu-right mt-0 rounded shadow">
-          <li><%= link_to 'Log out', destroy_user_session_path(redirect_url: params[:location]), method: :delete, class: 'dropdown-item' %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path(redirect_url: params[:location]), method: :delete, class: 'dropdown-item' %></li>
         </ul>
       <% end %>
     </li>

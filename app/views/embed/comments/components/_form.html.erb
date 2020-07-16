@@ -1,4 +1,4 @@
-<p class="h6 text-secondary"><b>How did you fill?</b></p>
+<p class="h6 text-secondary d-none"><b>How did you feel?</b></p>
 
 <div class="position-relative">
   <a id="loginBtn" href="javascript:void(0);" class="stretched-link <%= 'd-none' if user_signed_in? %>" data-href="<%= user_facebook_omniauth_authorize_url(state: params[:location]) %>">
@@ -17,10 +17,10 @@
     <input class="rating__input" name="comment[rating]" id="star_rating-5" value="5" type="radio">
 
     <div class="nav mb-1">
-      <div class="mr-2" style="font-size: 12px">
+      <div class="mr-2 h6 text-secondary">
         <span>Select your rate: </span>
       </div>
-      <div class="rating-group" style="font-size: 12px;">
+      <div class="rating-group h6" style="font-size: 16px;">
         <label aria-label="0 star" class="rating__label active" for="star_rating-0"><i class="rating__icon rating__icon--star fa fa-star d-none"></i></label>
         <label aria-label="1 star" class="rating__label" for="star_rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
         <label aria-label="2 stars" class="rating__label" for="star_rating-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
@@ -43,13 +43,13 @@
         <!-- Editor -->
         <div class="field comment-editor-wrapper flex-fill">
           <%= form.rich_text_area :content, class: 'comment-editor', placeholder: 'Put your awesome comment...' %>
-          <button class="comment-form-submit d-none d-sm-inline-block">Submit</button>
+          <button class="comment-form-submit d-none d-sm-inline-block">Post</button>
         </div>
       </div>
     </div>
 
     <div class="w-100 d-flex flex-row-reverse d-sm-none">
-      <button class="btn btn-primary position-relative" style="top: -10px;">Submit</button>
+      <button class="btn btn-primary position-relative" style="top: -10px;">Post</button>
     </div>
   <% end %>
 </div>
