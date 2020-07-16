@@ -8,6 +8,8 @@ class CommentSdk {
     const container = document.getElementById('yac-thread');
     const url = new URL(window.YACHost+'embed/comments'); //?api_key='+k;
 
+    if (!container) return;
+
     container.innerHTML = '';
 
     url.searchParams.set('api_key', k);
