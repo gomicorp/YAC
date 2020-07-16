@@ -8,9 +8,6 @@ module Embed
     layout 'embeded'
 
     def sdk
-      puts "\n\n\n\n\n\n\n\n\n"
-      puts sdk_embed_comments_url(format: :js)
-      puts "\n\n\n\n\n\n\n\n\n"
       allow_valid_iframe
       render layout: false
     end

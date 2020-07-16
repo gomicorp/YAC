@@ -6,7 +6,7 @@ class CommentSdk {
 
     const w = window;
     const container = document.getElementById('yac-thread');
-    const url = new URL(window.YACHost+'/embed/comments'); //?api_key='+k;
+    const url = new URL(window.YACHost+'embed/comments'); //?api_key='+k;
 
     container.innerHTML = '';
 

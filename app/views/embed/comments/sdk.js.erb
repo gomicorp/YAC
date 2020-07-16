@@ -16,8 +16,7 @@ function loadScript(id, src, callback) {
   if (existingScript && callback) callback();
 }
 
-
-window.YACHost = '<%= root_url %>';
+window.YACHost = '<%= (browser.chrome? && Rails.env.development?) ? 'http://localhost:3000/' : root_url %>';
 
 
 /**
