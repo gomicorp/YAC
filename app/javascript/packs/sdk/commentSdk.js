@@ -1,7 +1,7 @@
 import CommentThreadFrame from './commentSdk/commentThreadFrame';
 
 class CommentSdk {
-  render(k) {
+  render(k, d, i) {
     this.api_key = k;
 
     const w = window;
@@ -13,9 +13,9 @@ class CommentSdk {
     container.innerHTML = '';
 
     url.searchParams.set('api_key', k);
-    url.searchParams.set('domain', w.location.origin.replace(/http(s|):\/\//, ''));
+    url.searchParams.set('domain', d || w.location.origin.replace(/http(s|):\/\//, ''));
     url.searchParams.set('location', w.location.href);
-    url.searchParams.set('identifier', container.dataset.identifier);
+    url.searchParams.set('identifier', i || container.dataset.identifier);
 
     this.iframe = new CommentThreadFrame({
       api_key: this.api_key,

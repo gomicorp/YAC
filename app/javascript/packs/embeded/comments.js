@@ -43,6 +43,8 @@ onReady(bindOnChangeListenerAtEditorInput);
 const bindOnClickListenerAtLoginBtn = () => {
   const loginBtn = document.querySelector('#loginBtn');
 
+  if (!loginBtn) return;
+
   if (userAgent().safari) {
     loginBtn.addEventListener('click', () => {
       alert('YAC Plugin isn\'t support Safari browser.\nPlease run in Chrome browser.');

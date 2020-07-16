@@ -1,0 +1,96 @@
+<div class="container-fluid" style="margin-bottom: 2rem">
+  <div class="bs-row" style="border-bottom: 2px solid #b3b3b3">
+    <h3><b>1. Access Locations</b></h3>
+  </div>
+
+  <div class="bs-row" style="padding-top: 2rem">
+    <%= render partial: '/admin/posts/location', collection: post.locations.order(id: :desc), as: :location %>
+  </div>
+</div>
+
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">-->
+<style>
+  .container-fluid {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .bs-row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+  }
+
+  @media screen and (min-width: 576px) {
+    .col-sm-3 {
+      flex: 0 0 auto;
+      /*width: 25%;*/
+      width: 22.5%;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  /*.row>* {*/
+  /*  flex-shrink: 0;*/
+  /*  width: 100%;*/
+  /*  max-width: 100%;*/
+  /*  padding-right: calc(var(--bs-gutter-x)/ 2);*/
+  /*  padding-left: calc(var(--bs-gutter-x)/ 2);*/
+  /*  margin-top: var(--bs-gutter-y);*/
+  /*}*/
+
+
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+
+  .card .line {
+    font-size: 12px;
+    color: #b3b3b3;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    margin-bottom: 1rem;
+  }
+
+  .card .line div:first-child {
+    color: gray;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  .card .line div:last-child {
+  }
+
+  /* Add rounded corners to the top left and the top right corner of the image */
+  img {
+    border-radius: 5px 5px 0 0;
+    /*max-height: 50px;*/
+  }
+</style>

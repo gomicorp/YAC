@@ -23,5 +23,8 @@ window.YACHost = '<%= (browser.chrome? && Rails.env.development?) ? 'http://loca
  * Import & Initialize Attention module.
  */
 loadScript('YAC-sdk', '<%= asset_pack_url 'sdk.js' %>', function() {
-  YAC.commentSdk.render('<%= params[:api_key] %>');
+  // It won't be fixed for conditional clause.
+  // This is able to show to the client debug tools or others.
+  // So the factors except api key, must keep hide their intent.
+  YAC.commentSdk.render('<%= params[:api_key] %>', '<%= @admin_access ? @site.domain : '' %>', '<%= @admin_access ? @post.identifier : '' %>');
 });

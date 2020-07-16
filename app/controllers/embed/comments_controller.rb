@@ -9,6 +9,8 @@ module Embed
 
     def sdk
       allow_valid_iframe
+      @admin_access = true if params[:admin].presence
+      set_ancestors if @admin_access
       render layout: false
     end
 
@@ -23,6 +25,8 @@ module Embed
         # For general CommentSDK
         set_valid_ancestors
       end
+
+      @post.locations.visit!(params[:location].presence) if visitable?
 
       comments = if user_signed_in? && @organization.admins.where(id: current_user.id).exists?
                    @post.comments.service_admin_scope
@@ -124,6 +128,14 @@ module Embed
 
     def any_site_permitted_api_key
       Rails.env.development?
+    end
+
+    def visitable?
+      location = params[:location].presence
+      return false unless location
+      return false if URI.parse(location).path.start_with? '/admin'
+
+      true
     end
   end
 end

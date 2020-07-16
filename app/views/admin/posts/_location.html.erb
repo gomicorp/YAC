@@ -1,0 +1,43 @@
+<%
+  require 'open-uri'
+  page = Nokogiri::HTML(URI.open(location.address))
+
+  nil_or_value = ->(tried, key) { tried ? tried[key] : nil }
+  title = nil_or_value.call(page.at('meta[property="og:title"]'), 'content') || page.at('title').inner_text || '-'
+  image_url = nil_or_value.call(page.at('meta[property="og:image"]'), 'content')
+  url = nil_or_value.call(page.at('meta[property="og:url"]'), 'content') || '-'
+  canonical_url = nil_or_value.call(page.at('link[rel="canonical"]'), 'href') || '-'
+  description = nil_or_value.call(page.at('meta[property="og:description"]'), 'content') || '-'
+  site_name = nil_or_value.call(page.at('meta[property="og:site_name"]'), 'content') || '-'
+%>
+
+<div class="col-sm-3">
+  <div class="card">
+    <img src="<%= image_url %>" alt="og:image" style="width:100%">
+    <div class="container">
+      <h4><b><%= title %></b></h4>
+      <h5><span style="text-transform: capitalize">visit count:</span> <b><%= location.visit_count %></b></h5>
+
+      <div class="line">
+        <div>Address:</div>
+        <div><%= link_to location.address, location.address, target: '_blank' %></div>
+      </div>
+      <div class="line">
+        <div>Canonical Url:</div>
+        <div><%= canonical_url %></div>
+      </div>
+      <div class="line">
+        <div>og:description:</div>
+        <div><%= description %></div>
+      </div>
+      <div class="line">
+        <div>og:site_name:</div>
+        <div><%= site_name %></div>
+      </div>
+      <div class="line">
+        <div>og:url:</div>
+        <div><%= url %></div>
+      </div>
+    </div>
+  </div>
+</div>

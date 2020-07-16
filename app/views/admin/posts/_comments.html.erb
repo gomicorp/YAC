@@ -1,0 +1,6 @@
+<h3><b>2. User Comments</b></h3>
+<hr>
+
+<!-- Comment Thread Mirroring -->
+<script src="<%= sdk_embed_comments_url(format: :js, api_key: post.site.organization.api_key, post_id: post.id, admin: true) %>"></script>
+<div id="yac-thread" data-identifier="<%= post.identifier %>"></div>

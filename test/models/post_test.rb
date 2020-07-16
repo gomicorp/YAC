@@ -7,8 +7,10 @@
 #  comments_count           :integer          default(0)
 #  displayed_comments_count :integer          default(0), not null
 #  identifier               :string(255)      default(""), not null
+#  locations_count          :integer          default(0), not null
 #  rating_avg               :float(24)        default(0.0), not null
 #  thumbnail_url            :string(255)
+#  visit_count              :integer          default(0), not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  site_id                  :bigint           not null
