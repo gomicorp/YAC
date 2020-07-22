@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  address     :string(255)      default(""), not null
+#  uri         :text(65535)
 #  visit_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

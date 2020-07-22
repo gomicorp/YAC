@@ -4,6 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  address     :string(255)      default(""), not null
+#  uri         :text(65535)
 #  visit_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -20,28 +21,17 @@
 #  fk_rails_...  (post_id => posts.id)
 #
 class PostLocation < ApplicationRecord
+  attribute :uri, :uri
   belongs_to :post, counter_cache: :locations_count
 
-  validates :address, presence: true, uniqueness: { scope: :post_id }
+  validates :uri, presence: true, uniqueness: { scope: :post_id, case_sensitive: true }
 
   after_save :after_save_callback
   after_destroy :after_destroy_callback
 
-  def self.visit!(address)
-    post_location = find_or_initialize_by(address: address)
-    post_location.visit.tap do |res|
-      unless res
-        ap(
-          method: :'self.visit!',
-          args: { address: address },
-          errors: post_location.errors.full_messages,
-          error_object: post_location,
-          relatives: {
-            post: post_location.post
-          }
-        )
-      end
-    end
+  def self.visit!(uri)
+    post_location = find_or_initialize_by(uri: uri)
+    post_location.visit
   end
 
   def visit
@@ -49,6 +39,11 @@ class PostLocation < ApplicationRecord
     save
   end
 
+  # @override setter
+  def uri=(value)
+    super(value)
+    self.address = uri.url
+  end
 
   private
 
