@@ -15,7 +15,7 @@ module Mock
     private
 
     def set_organization
-      @organization = Organization.first
+      @organization = Organization.last
     end
 
     def set_site

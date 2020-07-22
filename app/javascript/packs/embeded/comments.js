@@ -15,7 +15,7 @@ const containerId = 'comments-wrapper'; // in child
 const getCommentServiceFrameHeight = () => outerHeight(document.getElementById(containerId));
 
 // 로딩됐을 때 프레임 높이 맞춰줘야 함.
-const sendMessageToUpdateScreenSize = () => {
+export const sendMessageToUpdateScreenSize = () => {
   parent.postMessage({
     eventName: 'updateFrameHeight',
     targetFrameSelector: iframeSelector,

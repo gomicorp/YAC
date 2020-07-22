@@ -29,4 +29,6 @@ document.addEventListener("turbolinks:load", function() {
   frames.forEach((iframe) => {
     console.log(iframe);
   });
+
+  setInterval(commentService.__sendMessageToUpdateScreenSize, 1000);
 });

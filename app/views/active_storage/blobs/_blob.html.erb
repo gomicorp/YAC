@@ -1,9 +1,9 @@
-<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
+<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %> text-sm-left">
   <% if blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]) %>
+    <%= image_tag(blob.representation(resize_to_fit: [280, 210])) %>
   <% end %>
 
-  <figcaption class="attachment__caption">
+  <figcaption class="attachment__caption text-sm-left">
     <% if caption = blob.try(:caption) %>
       <%= caption %>
     <% else %>
