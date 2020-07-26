@@ -59,7 +59,7 @@ class User < ApplicationRecord
       else
         create! do |user|
           user.name = auth.info.name
-          user.email = auth.info.email || "#{auth.provider}#{auth.uid}-#{auth.name.parameterize}@yac.fake"
+          user.email = auth.info.email || "#{auth.provider}#{auth.uid}-#{auth.info.name.parameterize}@yac.fake"
           user.image_url = auth.info.image
 
           passwd = Devise.friendly_token[0, 20]
