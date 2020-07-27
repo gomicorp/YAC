@@ -76,6 +76,7 @@ GEM
       activesupport (>= 3.0.0)
     awesome_print (1.8.0)
     bcrypt (3.1.13)
+    bcrypt (3.1.13-java)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -95,6 +96,8 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    data_migrate (6.3.0)
+      rails (>= 5.0)
     devise (4.7.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -106,6 +109,8 @@ GEM
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
     erubi (1.9.0)
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
@@ -340,8 +345,10 @@ DEPENDENCIES
   browser
   byebug
   capybara (>= 2.15)
+  data_migrate
   devise
   dotenv-rails
+  faker
   friendly_id
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

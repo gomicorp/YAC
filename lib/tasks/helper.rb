@@ -30,7 +30,7 @@ module Rake
     # Example:
     #   Rake::Helper.rake_alias 'db:migrate', 'db:schema:dump'
     #
-    def self.rake_alias(old_task, new_task)
+    def self.rake_alias(old_task, new_task, &block)
       # 기존 동작 취소
       ::Rake::Task[old_task].clear
 
@@ -41,6 +41,8 @@ module Rake
 
         # 실제 동작 실행
         ::Rake::Task[new_task].invoke
+
+        block.call if block_given?
       end
     end
   end
