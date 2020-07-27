@@ -1,6 +1,8 @@
+require 'open-uri'
+
 ActiveAdmin.register Post do
   menu priority: 6
-  includes site: :organization
+  includes site: :organization, locations: :visits
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -52,8 +54,37 @@ ActiveAdmin.register Post do
       row :comments
     end
 
-    render 'locations', post: post
-    render 'comments', post: post
+    tabs do
+      tab '1. View Count' do
+        panel "Access Locations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total: &nbsp; #{post.locations_count} URLs | #{post.visit_count} Views".html_safe do
+          table_for post.locations.order(visit_count: :desc) do
+            column :id
+            column(:address) do |location|
+              link_to location.address, location.address, target: '_blank'
+            end
+            column :visit_count
+            column('Visits (URI | Count)') do |location|
+              location.visits.group(:uri).count.each do |uri, count|
+                columns do
+                  column do
+                    span "&bullet; #{uri}".html_safe
+                  end
+                  column do
+                    span count
+                  end
+                end
+              end
+              nil
+            end
+          end
+        end
+      end
+
+      # render 'locations', post: post
+      tab '2. Comments' do
+        render 'comments', post: post
+      end
+    end
 
     active_admin_comments
   end
