@@ -16,6 +16,7 @@ gem 'pagy'
 
 gem 'data_migrate'
 gem 'rack-cors'
+gem 'sentry-raven'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
