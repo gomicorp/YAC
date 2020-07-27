@@ -29,8 +29,9 @@ class Post < ApplicationRecord
   belongs_to :site
   has_many :comments, class_name: 'Comment', dependent: :destroy
   has_many :locations, class_name: 'PostLocation', dependent: :destroy
+  has_many :visits, class_name: 'PostVisit', through: :locations
 
-  validates :identifier, presence: true, uniqueness: { scope: :site }
+  validates :identifier, presence: true, uniqueness: { scope: :site, case_sensitive: true }
 
   def update_self_counter_cache
     self.displayed_comments_count = comments.displayed.count

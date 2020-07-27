@@ -120,8 +120,6 @@ module Embed
 
     def permitted_site
       if any_site_permitted_api_key
-        ap @organization
-
         @organization.sites.find_or_create_by!(domain: params[:domain])
       else
         @organization.sites.find(params[:domain])
