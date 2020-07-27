@@ -3,11 +3,11 @@
 require_relative 'helper'
 
 Rake::Helper.rake_alias 'db:migrate', 'db:migrate:with_data' do
-  Rake::Task[:annotate_models].invoke
+  Rake::Task[:annotate_models].invoke if Rails.env.development?
 end
 
 Rake::Helper.rake_alias 'db:rollback', 'db:rollback:with_data' do
-  Rake::Task[:annotate_models].invoke
+  Rake::Task[:annotate_models].invoke if Rails.env.development?
 end
 
 Rake::Helper.rake_alias 'db:migrate:status', 'db:migrate:status:with_data'
