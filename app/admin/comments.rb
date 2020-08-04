@@ -1,4 +1,4 @@
-ActiveAdmin.register Comment.service_admin_scope do
+ActiveAdmin.register Comment do
   menu priority: 7
   includes :post, :author
 
