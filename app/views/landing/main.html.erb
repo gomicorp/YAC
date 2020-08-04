@@ -39,6 +39,8 @@
   </style>
   <!-- Custom styles for this template -->
   <link href="https://getbootstrap.com/docs/4.5/examples/jumbotron/jumbotron.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
 </head>
 
 <body>
@@ -56,6 +58,19 @@
     <div class="container">
       <h1 class="display-3">안녕하세요! YAC입니다.</h1>
       <p>YAC는 고미코퍼레이션에서 자사의 이커머스 플랫폼에 댓글 기능을 지원하기 위해 개발한 애플리케이션입니다.</p>
+      <p>
+        <% if user_signed_in? %>
+          <%= link_to root_path, class: 'btn btn-primary btn-lg' do %>
+            <%= image_tag current_user.image_url, width: 30, height: 30, class: 'rounded mr-2' %>
+            <span>Continue <%= current_user.name %> »</span>
+          <% end %>
+        <% else %>
+          <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-lg' do %>
+            <span class="fab fa-facebook-f mr-2"></span>
+            <span>Join with Facebook »</span>
+          <% end %>
+        <% end %>
+      </p>
     </div>
   </div>
 
@@ -90,7 +105,7 @@
 <footer class="container">
   <div class="row">
     <div class="col">
-      <p>&copy; 주식회사 고미코퍼레이션 2020</p>
+      <p>&copy; YAC 2020</p>
     </div>
     <div class="col text-md-right">
       <p class="text-capitalize">
