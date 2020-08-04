@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   before_action :set_raven_context
+  before_action :set_session_context
 
   private
 
@@ -16,14 +17,29 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  def after_sign_in_path_for(resource)
-    redirect_path_state = request.env.dig('omniauth.params', 'state')
-    redirect_path_state&.gsub!('_=_', 'yac-thread')
+  def set_session_context
+    #
+  end
 
-    redirect_path_state || super(resource)
+  def after_sign_in_path_for(resource)
+    redirect_path_state = request.env.dig('omniauth.params', 'state').dup
+    # redirect_path_state&.gsub!('_=_', "yac-thread?user=#{resource.id}")
+    if redirect_path_state
+      redirect_uri = URI(redirect_path_state)
+      redirect_uri.fragment = 'yac-thread'
+      redirect_uri.add_query(user: resource.id)
+
+      redirect_uri.to_s
+    else
+      super(resource)
+    end
   end
 
   def after_sign_out_path_for(resource)
-    request.referer || super(resource)
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    ap request.referer
+    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
+    URI(request.referer).add_query(remove_user: 1).to_s || super(resource)
   end
 end

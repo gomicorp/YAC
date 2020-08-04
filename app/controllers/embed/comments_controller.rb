@@ -18,6 +18,8 @@ module Embed
     # GET /embed/posts/:post_id/comments
     # GET /embed/posts/:post_id/comments.js
     def index
+      alternative_authenticate_user!
+
       if params[:post_id].present?
         # 1. To pagination
         set_ancestors
@@ -113,6 +115,14 @@ module Embed
 
     def comment_params
       params.require(:comment).permit(:content, :author_id, :rating)
+    end
+
+    def alternative_authenticate_user!
+      if params[:remove_user].present?
+        sign_out User.find(params[:user_id])
+      elsif !user_signed_in? && params[:user_id].present?
+        sign_in User.find(params[:user_id])
+      end
     end
 
 

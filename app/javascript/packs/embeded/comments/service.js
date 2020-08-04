@@ -148,6 +148,12 @@ class CommentService {
     }, '*');
   };
 
+  __sendMessageToExpireSessionHandler() {
+    parent.postMessage({
+      eventName: 'expireSessionHandler'
+    }, '*');
+  }
+
   __sendMessageToSocialLogin(e) {
     const loginBtn = e.target;
     console.log(loginBtn.dataset.href);
