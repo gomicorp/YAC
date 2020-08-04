@@ -1,15 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>YourAwesomeComment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>YAC | Your Awesome Comment</title>
+  <meta name="description" content="">
+  <meta name="author" content="Fred kim, Gomicorp product engineering team, and YAC contributors">
+
+  <link rel="canonical" href="<%= root_url %>">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="<%= image_url 'yac.png' %>" sizes="32x32" type="image/png">
+  <link rel="icon" href="<%= image_url 'yac.png' %>" sizes="16x16" type="image/png">
+  <meta name="theme-color" content="#563d7c">
+
+
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <%= stylesheet_pack_tag 'landing', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'landing', 'data-turbolinks-track': 'reload' %>
+
+  <link href="https://getbootstrap.com/docs/4.5/examples/jumbotron/jumbotron.css" rel="stylesheet">
 </head>
 
 <body>
-<%= yield %>
+
+<nav class="navbar navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <%= link_to root_path, class: 'navbar-brand' do %>
+      <span class="mr-2">YAC</span>
+      <small class="text-white-50">Your Awesome Comment</small>
+    <% end %>
+  </div>
+</nav>
+
+<main role="main">
+  <%= yield %>
+</main>
+
+<footer class="container-fluid bg-dark text-white py-5">
+  <div class="container">
+    <nav class="nav">
+      <%= link_to '이용약관', terms_path, class: 'nav-link text-white' %>
+      <%= link_to '개인정보처리방침', privacy_path, class: 'nav-link text-white' %>
+
+      <%= link_to 'YAC', root_path, class: 'nav-link text-white ml-auto font-weight-bold', style: 'font-size: 2rem' %>
+    </nav>
+
+    <ul class="nav text-white-50 small">
+      <li class="nav-item"><p class="">YAC 2020 &copy;</p></li>
+
+      <li class="nav-item ml-auto">
+        <p class="text-right">
+          <span class="text-capitalize">plugin 4 &raquo; your awesome comment</span>
+          <span class="d-block">Powered by GOMI</span></p>
+      </li>
+    </ul>
+  </div>
+</footer>
+
 </body>
 </html>

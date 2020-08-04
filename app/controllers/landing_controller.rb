@@ -1,6 +1,6 @@
 class LandingController < ApplicationController
   layout 'landing'
-  before_action :layout_false, only: %i[main terms privacy]
+  before_action :layout_false, only: %i[]
 
   def main
     #
