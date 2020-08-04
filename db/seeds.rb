@@ -30,8 +30,10 @@ aa_env = Rails.application.credentials.dig(Rails.env.to_sym, :active_admin)
 root_admin_email = aa_env.dig(:root_user, :email)
 root_admin_password = aa_env.dig(:root_user, :password)
 
-AdminUser.create!(
-  email: root_admin_email,
-  password: root_admin_password,
-  password_confirmation: root_admin_password
-) if AdminUser.where(email: root_admin_email).empty?
+if AdminUser.where(email: root_admin_email).empty?
+  AdminUser.create!(
+    email: root_admin_email,
+    password: root_admin_password,
+    password_confirmation: root_admin_password
+  )
+end
