@@ -17,6 +17,11 @@ class CommentSdk {
     url.searchParams.set('location', w.location.href);
     url.searchParams.set('identifier', i || container.dataset.identifier);
 
+    if (w.YAC.sessionHandler.data && w.YAC.sessionHandler.data.user) {
+      url.searchParams.set('user_id', w.YAC.sessionHandler.data.user);
+      console.log(url.toString());
+    }
+
     this.iframe = new CommentThreadFrame({
       api_key: this.api_key,
       src: url.toString(),

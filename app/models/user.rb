@@ -55,7 +55,9 @@ class User < ApplicationRecord
 
     user ||=
       if where(email: auth.info.email).exists?
-        user.identities.create!(provider: auth.provider, uid: auth.uid)
+        find_by(email: auth.info.email).tap do |user|
+          user.identities.create!(provider: auth.provider, uid: auth.uid)
+        end
       else
         create! do |user|
           user.name = auth.info.name

@@ -12,6 +12,14 @@ module URI
     origin + path
   end
 
+  attr_writer :fragment
+
+  def add_query(data = {})
+    _old_query = URI.decode_www_form(query || '')
+    @query = URI.encode_www_form(_old_query.to_h.merge(**data))
+    self
+  end
+
   def parameters
     ::URI.decode_www_form(query).to_h.symbolize_keys
   end

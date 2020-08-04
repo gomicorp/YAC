@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   }
 
   root 'landing#main'
+  scope controller: :landing do
+    get 'terms'
+    get 'privacy'
+  end
 
   draw :embed
   draw :mock

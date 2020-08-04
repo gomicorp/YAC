@@ -1,6 +1,12 @@
-ActiveAdmin.register Comment.service_admin_scope do
+ActiveAdmin.register Comment do
   menu priority: 7
   includes :post, :author
+
+  controller do
+    def scoped_collection
+      super.service_admin_scope
+    end
+  end
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

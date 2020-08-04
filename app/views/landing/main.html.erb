@@ -1,2 +1,46 @@
-<h1>Landing#main</h1>
-<p>Find me in app/views/landing/main.html.erb</p>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">안녕하세요! YAC입니다.</h1>
+    <p>YAC는 고미코퍼레이션에서 자사의 이커머스 플랫폼에 댓글 기능을 지원하기 위해 개발한 애플리케이션입니다.</p>
+    <p>
+      <% if user_signed_in? %>
+        <%= link_to root_path, class: 'btn btn-primary btn-lg' do %>
+          <%= image_tag current_user.image_url, width: 30, height: 30, class: 'rounded mr-2' %>
+          <span>Continue <%= current_user.name %> »</span>
+        <% end %>
+      <% else %>
+        <%= link_to user_facebook_omniauth_authorize_path, class: 'btn btn-primary btn-lg' do %>
+          <span class="fab fa-facebook-f mr-2"></span>
+          <span>Join with Facebook »</span>
+        <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>자유롭게 댓글 작성</h2>
+      <p>YAC을 사용하면 사용자가 원하는 상품에 후기 및 댓글을 작성하도록 할 수 있습니다. </p>
+      <p><a class="btn btn-secondary" href="#" role="button">더 알아보기 &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+      <h2>페이스북 로그인</h2>
+      <p>페이스북 로그인을 통해 참여 가능하기 때문에 관리자는 정상적인 사용자인지 판별할 수 있습니다.</p>
+      <p><a class="btn btn-secondary" href="#" role="button">더 알아보기 &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4">
+      <h2>가볍고 빠른 설치</h2>
+      <p>YAC은 아주 가볍고 빠르게 설치할 수 있는 유일무이한 애플리케이션입니다.</p>
+      <p><a class="btn btn-secondary" href="#" role="button">더 알아보기 &raquo;</a></p>
+    </div>
+  </div>
+
+  <hr>
+
+</div> <!-- /container -->

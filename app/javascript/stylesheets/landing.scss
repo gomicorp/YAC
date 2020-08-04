@@ -1,3 +1,53 @@
-
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free';
 @import './actiontext';
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: .3rem;
+
+  @media (min-width: 576px) {
+    padding: 4rem 2rem;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+main {
+  min-height: calc(100% - 200px);
+}
+
+footer {
+  .nav {
+    .nav-link {
+      @extend .px-2;
+      line-height: .45;
+      margin-bottom: 1rem;
+
+      &:first-child {
+        padding-left: 0 !important;
+      }
+      &:last-child {
+        padding-right: 0 !important;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import IFrame from '../../helpers/iFrame';
+import sessionHandler from '../../sdk/sessionHandler';
 
 export default class CommentThreadFrame extends IFrame {
   constructor(args) {
@@ -18,6 +19,9 @@ export default class CommentThreadFrame extends IFrame {
           case 'requestLoginRedirect':
             self.__requestLoginRedirect(e.data.loginUrl);
             break
+          case 'expireSessionHandler':
+            sessionHandler.init(window);
+            sessionHandler.clear();
           default:
             return;
         }

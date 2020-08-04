@@ -1,7 +1,7 @@
 module Embed
   class CommentsController < ApplicationController
-    skip_before_action :verify_authenticity_token, only: :sdk
-    before_action :authenticate_user!, except: %i[sdk index]
+    skip_before_action :verify_authenticity_token
+    prepend_before_action :alternative_authenticate_user!
     before_action :set_ancestors, except: %i[sdk index]
     after_action :allow_valid_iframe, only: :index
 
@@ -56,6 +56,7 @@ module Embed
 
     # POST /embed/comments.js
     def create
+      ap current_user
       @comment = @post.comments.new(comment_params.merge(
         remote_ip: request.remote_ip
       ))

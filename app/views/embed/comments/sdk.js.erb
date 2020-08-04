@@ -26,5 +26,17 @@ loadScript('YAC-sdk', '<%= asset_pack_url 'sdk.js' %>', function() {
   // It won't be fixed for conditional clause.
   // This is able to show to the client debug tools or others.
   // So the factors except api key, must keep hide their intent.
+
+  YAC.sessionHandler.init(window);
+  YAC.sessionHandler.lookupUser();
   YAC.commentSdk.render('<%= params[:api_key] %>', '<%= @admin_access ? @site.domain : '' %>', '<%= @admin_access ? @post.identifier : '' %>');
+
+  var url = new URL(location.href);
+  url = new URL(url.href.replace(url.hash, ''));
+  history.replaceState('', '', url.href);
+
+  if (!url.search) {
+    url = new URL(url.href.replace('?', ''));
+    history.replaceState('', '', url.href);
+  }
 });

@@ -30,5 +30,9 @@ document.addEventListener("turbolinks:load", function() {
     console.log(iframe);
   });
 
+  console.log(location.href);
   setInterval(commentService.__sendMessageToUpdateScreenSize, 1000);
+  if (location.href.includes('remove_user')) {
+    setTimeout(commentService.__sendMessageToExpireSessionHandler, 1000);
+  }
 });

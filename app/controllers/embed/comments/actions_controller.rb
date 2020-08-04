@@ -1,7 +1,8 @@
 module Embed
   module Comments
     class ActionsController < ApplicationController
-      before_action :authenticate_user!
+      skip_before_action :verify_authenticity_token
+      prepend_before_action :alternative_authenticate_user!
       before_action :set_comment
       before_action :check_authorized_user
       layout 'embeded'
