@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     redirect_path_state = request.env.dig('omniauth.params', 'state').dup
-    # redirect_path_state&.gsub!('_=_', "yac-thread?user=#{resource.id}")
+
     if redirect_path_state
       redirect_uri = URI(redirect_path_state)
       redirect_uri.fragment = 'yac-thread'
@@ -36,10 +36,18 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-    ap request.referer
-    puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
-
     URI(request.referer).add_query(remove_user: 1).to_s || super(resource)
+  end
+
+  def alternative_authenticate_user!
+    if params[:remove_user].present?
+      sign_out User.find(params[:user_id])
+    elsif !user_signed_in? && params[:user_id].present?
+      sign_in User.find(params[:user_id])
+    end
+  end
+
+  def default_url_options
+    params[:user_id].present? ? super.merge(user_id: params[:user_id]) : super
   end
 end
