@@ -23,6 +23,7 @@ class Site < ApplicationRecord
   belongs_to :organization
   has_many :posts, class_name: 'Post', dependent: :destroy
   has_many :comments, through: :posts
+  has_many :authors, -> { distinct }, through: :comments
 
   has_many :settings, dependent: :destroy
   has_one :setting, -> { order(id: :desc).limit(1) }

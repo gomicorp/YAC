@@ -17,6 +17,7 @@ class Organization < ApplicationRecord
   has_many :sites, class_name: 'Site', dependent: :destroy
   has_many :posts, through: :sites
   has_many :comments, through: :posts
+  has_many :authors, -> { distinct }, through: :comments
 
   has_many :admin_permissions, class_name: 'OrganizationAdminPermission'
   has_many :admins, through: :admin_permissions

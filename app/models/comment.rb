@@ -28,6 +28,8 @@ class Comment < ApplicationRecord
   has_rich_text :content
 
   belongs_to :post, counter_cache: true
+  has_one :site, through: :post
+  has_one :organization, through: :site
   belongs_to :author, class_name: 'User'
 
   has_many :comments, class_name: 'Comment'
@@ -46,6 +48,8 @@ class Comment < ApplicationRecord
   scope :service_admin_scope, -> { with_author.with_rich_text_content_and_embeds.order(id: :desc) }
   scope :service_scope, -> { with_author.displayed.with_rich_text_content_and_embeds.order(id: :desc) }
 
+  scope :site_with, ->(site_id) { includes(:post).where(posts: { site_id: site_id }) }
+  scope :organization_with, ->(organization_id) { includes(post: :site).where(sites: { organization_id: organization_id }) }
 
   def displayed?
     hide_at.nil?

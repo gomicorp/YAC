@@ -19,4 +19,5 @@ Rails.application.routes.draw do
 
   draw :embed
   draw :mock
+  draw :api
 end

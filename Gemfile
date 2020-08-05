@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'jbuilder', '~> 2.7'
+gem 'jbuilder-except'
+
 gem 'browser'
 gem 'devise'
 gem 'letter_opener', group: :development
