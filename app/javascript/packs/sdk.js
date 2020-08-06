@@ -3,7 +3,9 @@ import sessionHandler from './sdk/sessionHandler';
 import commentSdk from './sdk/commentSdk';
 
 window.YAC = {
-  version: '0.18.1',
+  // If version change,
+  // Clear all localStorage data
+  version: '0.18.2',
   storage,
   sessionHandler,
   commentSdk,

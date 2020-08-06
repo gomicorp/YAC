@@ -12,7 +12,7 @@ class Storage {
     this.db = win.localStorage;
     this.load();
 
-    if (win.YAC.version !== this.data.version.toString()) {
+    if (win.YAC.version !== (this.data.version || '')) {
       this.clear();
       this.load();
       this.data.version = win.YAC.version;
