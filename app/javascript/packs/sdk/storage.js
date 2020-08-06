@@ -13,11 +13,14 @@ class Storage {
     this.load();
 
     if (win.YAC.version !== (this.data.version || '')) {
+      console.log(`YAC | Current storage version is '${this.data.version}'.`);
+      console.log(`YAC | Clear storage protocol starting...`);
       this.clear();
       this.load();
       this.data.version = win.YAC.version;
       this.save();
       this.load();
+      console.log(`YAC | Finished. Storage version is '${this.data.version}'`);
     }
   }
 
@@ -31,6 +34,7 @@ class Storage {
 
   clear() {
     this.db.clear();
+    console.log(`YAC | Storage cleared.`);
   }
 }
 

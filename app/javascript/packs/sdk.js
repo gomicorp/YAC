@@ -5,7 +5,7 @@ import commentSdk from './sdk/commentSdk';
 window.YAC = {
   // If version change,
   // Clear all localStorage data
-  version: '0.18.2',
+  version: '0.18.3',
   storage,
   sessionHandler,
   commentSdk,

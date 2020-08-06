@@ -27,6 +27,7 @@ loadScript('YAC-sdk', '<%= asset_pack_url 'sdk.js' %>', function() {
   // This is able to show to the client debug tools or others.
   // So the factors except api key, must keep hide their intent.
 
+  console.log(`YAC | ${YAC.version} loaded.`);
   YAC.sessionHandler.init(window);
   YAC.sessionHandler.lookupUser();
   YAC.commentSdk.render('<%= params[:api_key] %>', '<%= @admin_access ? @site.domain : '' %>', '<%= @admin_access ? @post.identifier : '' %>');
