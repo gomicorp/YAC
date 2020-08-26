@@ -1,6 +1,6 @@
 module Embed
-  class CommentsController < ApplicationController
-    skip_before_action :verify_authenticity_token
+  class CommentsController < BaseController
+    # skip_before_action :verify_authenticity_token, except: %i[create]
     prepend_before_action :alternative_authenticate_user!
     before_action :set_ancestors, except: %i[sdk index]
     after_action :allow_valid_iframe, only: :index

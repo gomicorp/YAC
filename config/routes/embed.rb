@@ -18,4 +18,8 @@ namespace :embed do
   resources :posts, only: [] do
     resources :comments, concerns: [:paginatable]
   end
+
+  scope :active_storage do
+    resource :direct_uploads, controller: '/embed/active_storage/direct_uploads', only: :create
+  end
 end
