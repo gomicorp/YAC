@@ -28,9 +28,16 @@ loadScript('YAC-sdk', '<%= asset_pack_url 'sdk.js' %>', function() {
   // So the factors except api key, must keep hide their intent.
 
   console.log(`YAC | ${YAC.version} loaded.`);
+  YAC.host = window.YACHost;
+  YAC.api_key = '<%= params[:api_key] %>';
+  YAC.domain = window.location.origin.replace(/http(s|):\/\//, '');
+  YAC.api_host = YAC.host+'api/'+YAC.api_key+'/sites/'+YAC.domain;
+
   YAC.sessionHandler.init(window);
   YAC.sessionHandler.lookupUser();
   YAC.commentSdk.render('<%= params[:api_key] %>', '<%= @admin_access ? @site.domain : '' %>', '<%= @admin_access ? @post.identifier : '' %>');
+
+  if (typeof window.yac_sdk_loaded === 'function') yac_sdk_loaded(YAC);
 
   var url = new URL(location.href);
   url = new URL(url.href.replace(url.hash, ''));

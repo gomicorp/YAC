@@ -17,13 +17,16 @@
 
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
+      <tr class="yac-api-post" data-identifier="<%= post.identifier %>">
         <td><%= post.id %></td>
         <td><%= post.site_id %></td>
         <td><%= post.identifier %></td>
         <td><%= post.comments_count %></td>
         <td><%= post.displayed_comments_count %></td>
-        <td><%= post.rating_avg %></td>
+        <td>
+          <%= post.rating_avg %>
+          <span data-yac_marker="rating_avg" data-yac_callback="yac_post_rating_callback">0.0</span>
+        </td>
         <td><%= link_to 'Show', mock_post_path(post) %></td>
       </tr>
     <% end %>
@@ -31,3 +34,22 @@
 </table>
 
 <br>
+
+<script>
+  function yac_sdk_loaded() {
+    document.querySelectorAll('.yac-api-post').forEach(function (elem) {
+      if (elem.dataset.yac_post) {
+        var post = JSON.parse(elem.dataset.yac_post);
+        YAC.component.mark(elem, post);
+      } else {
+        $.ajax({
+          url: YAC.api.posts.findUrl(YAC, elem.dataset.identifier),
+          method: 'get'
+        }).done(function(post) {
+          YAC.component.cache(elem, 'yac_post', post);
+          YAC.component.mark(elem, post);
+        }).fail(console.warn);
+      }
+    })
+  }
+</script>
