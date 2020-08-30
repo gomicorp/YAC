@@ -26,10 +26,13 @@
 #  fk_rails_...  (site_id => sites.id)
 #
 class Post < ApplicationRecord
+  extend FriendlyId
   belongs_to :site
   has_many :comments, class_name: 'Comment', dependent: :destroy
   has_many :locations, class_name: 'PostLocation', dependent: :destroy
   has_many :visits, class_name: 'PostVisit', through: :locations
+
+  friendly_id :identifier
 
   validates :identifier, presence: true, uniqueness: { scope: :site, case_sensitive: true }
 
