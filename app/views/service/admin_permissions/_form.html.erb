@@ -18,8 +18,17 @@
         <%=
           form.collection_select(
             :admin_id,
+
+            # 이미 존재하는 관리자의 경우 미리 옵션으로 주입해,
+            # 중복된 권한 레코드를 생성하지 않도록 막아줍니다.
+            # -> <옵션 데이터셋>, <옵션 값>, <옵션 텍스트>
             @organization.admins, :id, :name,
+
+            # 페이지 로딩시 인풋은 비어있는 상태로 유지합니다.
             { include_blank: true },
+
+            # 자동완성 로직은 이곳에서 컨트롤 합니다.
+            # packs/service/ui/auto-complete.js 를 참고하세요.
             {
               data: {
                 autocomplete_src: search_admins_path,
@@ -29,25 +38,8 @@
             }
           )
         %>
-<!--        <select name="organization_admin_permission[admin_name]"-->
-<!--                id="organization_admin_permission_admin_name"-->
-<!--                data-autocomplete-src="<%#= search_admins_path %>"-->
-<!--                data-autocomplete-placeholder="Search an exist user with name or email..."-->
-<!--                data-autocomplete-template="admin">-->
-<!--        </select>-->
-        <%#= form.text_field :admin_name, data: { autocomplete_src: search_admins_path } %>
       </div>
     </div>
-
-    <!--  <div class="field">-->
-    <%#= form.label :email %>
-    <%#= form.text_field :email %>
-    <!--  </div>-->
-
-    <!--  <div class="field">-->
-    <%#= form.label :name %>
-    <%#= form.text_field :name %>
-    <!--  </div>-->
   </div>
 
   <div class="card-footer bg-white p-4">
