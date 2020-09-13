@@ -1,0 +1,28 @@
+<div id="organization-index-container" class="card shadow border-0">
+  <div class="card-header bg-dark py-3 px-4">
+    <h1 class="h2 text-white d-inline-block">Organizations</h1>
+
+    <div class="d-inline-flex align-items-center text-white float-right mt-1">
+      <%= image_tag current_user.image_url, width: 30, height: 30, class: 'rounded-circle mr-2' %>
+      <p class="m-0"><%= current_user.name %></p>
+    </div>
+  </div>
+
+  <div class="card-body p-4">
+    <h2 class="h4 text-center mb-4">
+      <%= @organizations.any? ? 'Start with ...' : 'Get start with new organization!' %>
+    </h2>
+
+    <% @organizations.each do |organization| %>
+      <%= link_to organization, class: 'btn btn-light w-100 py-3 my-1' do %>
+        <%= organization.name %>
+
+        <span class="float-right"><span class="fas fa-arrow-right"></span></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<br />
+
+<%= link_to 'New Organization', new_organization_path %>

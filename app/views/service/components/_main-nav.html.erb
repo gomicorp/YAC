@@ -1,0 +1,13 @@
+<%= render 'layouts/service/components/main-nav/main-nav' do %>
+  <%= render 'layouts/service/components/main-nav/column', text: @site.try(:name) || 'All hosting sites' do %>
+    <%= render 'layouts/service/components/main-nav/dropdown/item-header', text: 'Hosting sites' do %>
+      <%= button_xs 'new site', new_organization_site_path(@organization), icon: 'far fa-plus-circle', class: 'btn-outline-secondary shadow2 ml-auto mr-0' %>
+    <% end %>
+
+    <% @organization.sites.each do |site| %>
+      <%= render 'layouts/service/components/main-nav/dropdown/item', path: '#', icon: 'fas fa-pennant', text: site.name %>
+    <% end %>
+  <% end %>
+
+
+<% end %>

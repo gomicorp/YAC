@@ -1,0 +1,84 @@
+@import '~bootstrap/scss/bootstrap';
+@import './actiontext';
+
+@import './generic/font';
+
+html,
+body {
+  height: 100%;
+  font-size: 14px;
+}
+
+.focus-init {
+  &:focus,
+  &.focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.dropdown-menu-fit {
+  left: -4px !important;
+  right: 4px !important;
+}
+.dropdown-item {
+  &.active,
+  &:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0d6efd;
+  }
+
+  &.dropdown-item-muted {
+    $theme-color: #6c757d;
+    color: $theme-color;
+
+    &.hover,
+    &:hover {
+      color: $theme-color;
+      text-decoration: none;
+      background-color: lighten($theme-color, 50%);
+    }
+
+    &.active,
+    &:active {
+      color: $theme-color;
+      text-decoration: none;
+      background-color: lighten($theme-color, 40%);
+    }
+  }
+}
+
+
+
+.btn-xs,
+.btn-group-xs > .btn {
+  line-height: 1;
+  border-radius: 3px;
+  padding: 4px 6px;
+  text-transform: none;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(216, 210, 222);
+  cursor: pointer;
+  margin: 0 8px;
+  color: rgb(149, 133, 163);
+}
+
+.shadow2 {
+  box-shadow: rgba(0, 0, 0, 0.05) 0 2px;
+}
+
+.icon {
+  position: relative;
+  top: 1px;
+  margin-right: 1px;
+}
+
+
+
+
+@import './service/nav';
+
+@import './service/organizations';

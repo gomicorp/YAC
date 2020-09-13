@@ -42,6 +42,27 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  after_initialize do |user|
+    user.image_url ||= 'dummy/embed/noname.png'
+  end
+
+  def self.search_by_terms(term, page)
+    Rails.cache.fetch(['User-search_by_terms', term]) do
+      where('name LIKE :term OR email LIKE :term', term: "%#{term}%")
+    end
+  end
+
+  def make_profile_image
+    return if profile_image.attached?
+
+    file = if image_url == 'dummy/embed/noname.png'
+             File.open(Rails.root.join('assets/images', 'dummy/embed/noname.png'))
+           else
+             File.download_from_url(image_url)
+           end
+
+    profile_image.attach(io: file, filename: file.basename)
+  end
 
   ###
   # Facebook Auth

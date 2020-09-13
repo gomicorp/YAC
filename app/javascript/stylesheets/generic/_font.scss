@@ -1,0 +1,12 @@
+@import './variables/breakpoints';
+@import './variables/size';
+@import './variables/macro';
+
+@each $prop, $abbrev in (font-weight: f) {
+  @each $size in $font-weight-sizes {
+    .#{$abbrev}-#{$size} { #{$prop}: #{$size} !important; }
+  }
+}
+
+@include to_generic_size-with-scale((font-size: f));
+@include to_generic_size-with-pixel((font-size: f));

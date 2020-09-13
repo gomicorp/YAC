@@ -1,0 +1,62 @@
+<%= form_for(admin_permission, url: url, local: true) do |form| %>
+  <div class="card-body p-4">
+    <% if admin_permission.errors.any? %>
+      <div id="error_explanation alert alert-danger">
+        <h2><%= pluralize(admin_permission.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% admin_permission.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row mb-3">
+      <%= form.label :admin_id, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%=
+          form.collection_select(
+            :admin_id,
+            @organization.admins, :id, :name,
+            { include_blank: true },
+            {
+              data: {
+                autocomplete_src: search_admins_path,
+                autocomplete_placeholder: 'Search an exist user with name or email...',
+                autocomplete_template: 'admin'
+              }
+            }
+          )
+        %>
+<!--        <select name="organization_admin_permission[admin_name]"-->
+<!--                id="organization_admin_permission_admin_name"-->
+<!--                data-autocomplete-src="<%#= search_admins_path %>"-->
+<!--                data-autocomplete-placeholder="Search an exist user with name or email..."-->
+<!--                data-autocomplete-template="admin">-->
+<!--        </select>-->
+        <%#= form.text_field :admin_name, data: { autocomplete_src: search_admins_path } %>
+      </div>
+    </div>
+
+    <!--  <div class="field">-->
+    <%#= form.label :email %>
+    <%#= form.text_field :email %>
+    <!--  </div>-->
+
+    <!--  <div class="field">-->
+    <%#= form.label :name %>
+    <%#= form.text_field :name %>
+    <!--  </div>-->
+  </div>
+
+  <div class="card-footer bg-white p-4">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <%= link_to 'Back', organization_admin_permissions_path(@organization.id), class: 'btn btn-secondary mr-2' %>
+        <%= form.submit 'Make Permission', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

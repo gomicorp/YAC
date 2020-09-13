@@ -1,0 +1,43 @@
+<%= render layout: 'layouts/service/page/with-side-menu-bar' do %>
+  <div class="card">
+    <div class="card-header p-4 bg-white text-dark">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h1 class="h4">Organization Sites</h1>
+          <span class="text-muted">Info on the <%= @sites.count %> sites in this organization.</span>
+        </div>
+
+        <%= link_to new_organization_site_path(@organization.id), class: 'btn btn-outline-secondary text-capitalize shadow2' do %>
+          <span class="icon mr-2"><i class="far fa-plus-circle"></i></span>
+          <span>new site</span>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <% @sites.each do |site| %>
+        <li class="list-group-item p-4 d-flex align-items-center justify-content-between">
+          <div>
+            <p class="m-0">
+              <i class="far fa-globe-asia mr-2"></i>
+              <span class="text-dark mr-4 f-500"><%= site.name %></span>
+              <small class="font-weight-light text-black-50"><%= site.domain %></small>
+            </p>
+          </div>
+
+          <div>
+            <%= link_to organization_site_path(@organization.id, site.id), class: 'btn btn-outline-secondary text-capitalize shadow2' do %>
+              <span class="icon mr-2"><i class="far fa-play"></i></span>
+              <span>manage</span>
+            <% end %>
+
+            <%= link_to edit_organization_site_path(@organization.id, site.id), class: 'btn btn-outline-secondary text-capitalize shadow2' do %>
+              <span class="icon mr-2"><i class="far fa-cog"></i></span>
+              <span>settings</span>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

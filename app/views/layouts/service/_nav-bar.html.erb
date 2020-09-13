@@ -1,0 +1,54 @@
+<nav id="nav-bar" class="navbar navbar-expand navbar-dark sticky-top bg-dark">
+  <div class="container">
+    <%= link_to organization_path(@organization), class: 'navbar-brand' do %>
+      <span class="mr-2">YAC</span>
+      <small class="text-white-50">| <%= @organization.name %></small>
+    <% end %>
+
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <span class="mr-2 f--12 f-500">
+              <i class="icon far fa-globe-asia mr-1"></i>
+              <span><%= @site&.name || 'global'.capitalize %></span>
+            </span>
+          </a>
+
+          <ul class="dropdown-menu rounded-0 shadow-sm mt-2 pt-0" style="min-width: 200px;">
+            <li>
+              <h6 class="dropdown-header border-bottom mb-2 d-flex justify-content-between align-items-center">
+                <div>Sites <span class="badge bg-secondary"><%= @organization.sites.count %></span></div>
+
+                <%= button_xs 'new', new_organization_site_path(@organization.id), class: 'shadow2 f-2 mr-0', icon: 'far fa-plus-circle' %>
+              </h6>
+            </li>
+
+            <% @organization.sites.each do |site| %>
+              <% next if site.new_record? %>
+              <%= nav_dropdown_item :active_link_to, site.name, organization_site_path(@organization.id, site.id), active: :exclusive, class: 'f--12 py-2 dropdown-item-muted', icon: 'far fa-globe-asia' %>
+            <% end %>
+          </ul>
+        </li>
+
+        <%# :DOC: 여기에 링크를 추가하려면 이걸 쓰세요. 참고로, active_link_to 가 적용되어 있습니다. %>
+        <%#= nav_item_link_to 'Link', '#' %>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle pr-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false" data-reference="parent">
+            <%= image_tag current_user.image_url, width: 30, height: 30, class: 'rounded-circle mr-2' %>
+            <span><%= current_user.name %></span>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-right rounded-0 shadow-sm mt-2">
+            <%= nav_dropdown_item :active_link_to, 'Organization', organizations_path, active: :exclusive, icon: 'fas fa-dice-d6' %>
+            <%= nav_dropdown_item :hr %>
+            <%= nav_dropdown_item :link_to, 'Sign out', destroy_user_session_path, method: :delete, class: 'text-muted', icon: 'fas fa-sign-out' %>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

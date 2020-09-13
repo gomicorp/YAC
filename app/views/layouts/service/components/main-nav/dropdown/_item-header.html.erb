@@ -1,0 +1,10 @@
+<%
+  text = text
+%>
+
+<li>
+  <h6 class="dropdown-header py-2">
+    <span><%= text %></span>
+    <%= yield if block_given? %>
+  </h6>
+</li>

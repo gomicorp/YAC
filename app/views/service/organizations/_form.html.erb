@@ -1,0 +1,21 @@
+<%= form_for(organization, local: true) do |form| %>
+  <% if organization.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2 class="h4 text-center"><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul>
+        <% organization.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.text_field :name, class: 'form-control form-control-lg', placeholder: 'Put your organization name' %>
+  </div>
+
+  <div class="text-center">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

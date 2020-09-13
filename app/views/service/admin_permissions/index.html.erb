@@ -1,0 +1,39 @@
+<%= render layout: 'layouts/service/page/with-side-menu-bar' do %>
+  <div class="card">
+    <div class="card-header p-4 bg-white text-dark">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h1 class="h4">Organization Admins</h1>
+          <span class="text-muted">Info on the <%= @admins.count %> admins in this organization.</span>
+        </div>
+
+        <%= link_to new_organization_admin_permission_path(@organization.id), class: 'btn btn-outline-secondary text-capitalize shadow2' do %>
+          <span class="icon mr-2"><i class="far fa-plus-circle"></i></span>
+          <span>new admin</span>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <% @admin_permissions.each do |admin_permission| %>
+        <% admin = admin_permission.admin %>
+        <li class="list-group-item p-4 d-flex align-items-center justify-content-between">
+          <div>
+            <p class="m-0 d-flex align-items-center">
+              <%= image_tag admin.image_url, width: 40, height: 40, class: 'mr-3 rounded' %>
+              <span class="text-dark mr-4 f-500"><%= admin.name %></span>
+              <small class="font-weight-light text-black-50"><%= admin.email %></small>
+            </p>
+          </div>
+
+          <div>
+            <%= link_to organization_admin_permission_path(@organization.id, admin_permission), class: "btn btn-outline-danger text-capitalize shadow2 #{'disabled' if current_user.id == admin.id}", method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="icon mr-2"><i class="far fa-ban"></i></span>
+              <span>remove</span>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,117 @@
+#nav-bar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  .nav-link {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+
+    &.active {
+      background: darken(#343a40, 7.5%);
+    }
+  }
+
+  .dropdown-menu {
+    $border-width: 10px;
+    $border-width2: 12px;
+    $border-color: #ffffff;
+    $top: -1 * 2 * #{$border-width};
+    $left: 15px;
+
+    $back-offset: 1.5;
+    $back-border-width: calc(#{$border-width} + #{$back-offset}px);
+    $back-border-width2: calc(#{$border-width2} + #{$back-offset}px);
+    $back-border-color: #cfcfcf;
+    $back-top: calc(#{$top} - #{$back-offset * 2}px);
+    $back-left: calc(#{$left} - #{$back-offset + 0.1}px);
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+    }
+
+    &:before {
+      z-index: 2;
+
+      border-top: $border-width solid transparent;
+      border-right: $border-width2 solid transparent;
+      border-bottom: $border-width solid $border-color;
+      border-left: $border-width2 solid transparent;
+
+      top: calc(#{$top});
+      left: calc(#{$left});
+    }
+
+    &:after {
+      border-top: $back-border-width solid transparent;
+      border-right: $back-border-width2 solid transparent;
+      border-bottom: $back-border-width solid $back-border-color;
+      border-left: $back-border-width2 solid transparent;
+
+      top: $back-top;
+      left: $back-left;
+    }
+
+    &.dropdown-menu-right {
+      &:before {
+        left: initial;
+        right: calc(#{$left});
+      }
+      &:after {
+        left: initial;
+        right: calc(#{$back-left});
+      }
+    }
+  }
+}
+
+
+// top nav
+#main-navigation {
+  & > .nav-item {
+    width: 25%;
+
+    & > div {
+      width: 100%;
+
+      .dropdown-toggle {
+        &:after {
+          content: none;
+        }
+
+        i {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          display: inline-table;
+          right: 1rem;
+        }
+      }
+    }
+
+    & > .btn-group {
+      & > button {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    & > li {
+      & > .dropdown-item,
+      & > .dropdown-header {
+        padding: 0.75rem 1rem;
+        //font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

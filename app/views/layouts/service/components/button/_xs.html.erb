@@ -1,0 +1,13 @@
+<%
+  path = path || '#'
+  icon = icon
+  text_class = text_class || 'text-capitalize'
+  btn_class = btn_class
+%>
+
+<%= link_to path, class: ['btn btn-xs', btn_class] do %>
+  <% if icon %>
+    <span class="icon"><i class="<%= icon %>"></i></span>
+  <% end %>
+  <span class="<%= text_class %>"><%= text %></span>
+<% end %>

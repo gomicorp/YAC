@@ -1,0 +1,2 @@
+module Service::OrganizationsHelper
+end

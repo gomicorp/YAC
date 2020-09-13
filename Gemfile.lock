@@ -37,6 +37,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activeadmin (2.7.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (~> 3.1)
@@ -225,6 +228,8 @@ GEM
     rack (2.2.3)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
+    rack-mini-profiler (2.0.4)
+      rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -342,6 +347,7 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  active_link_to
   activeadmin
   annotate
   awesome_print
@@ -364,6 +370,7 @@ DEPENDENCIES
   pagy
   puma (~> 4.1)
   rack-cors
+  rack-mini-profiler
   rails (~> 6.0.3, >= 6.0.3.2)
   sass-rails (>= 6)
   selenium-webdriver

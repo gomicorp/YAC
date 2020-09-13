@@ -1,0 +1,62 @@
+@import './breakpoints';
+@import './size';
+
+@mixin to_generic_size-with-scale($map) {
+  @each $prop, $abbrev in $map {
+    @each $tag, $size in $sz-list-with-tag {
+      .#{$abbrev}-#{$tag} {
+        #{$prop}: #{$size} !important;
+      }
+      @media (min-width: $grid-sm) {
+        .#{$abbrev}-sm-#{$tag} {
+          #{$prop}: #{$size} !important;
+        }
+      }
+      @media (min-width: $grid-md) {
+        .#{$abbrev}-md-#{$tag} {
+          #{$prop}: #{$size} !important;
+        }
+      }
+      @media (min-width: $grid-lg) {
+        .#{$abbrev}-lg-#{$tag} {
+          #{$prop}: #{$size} !important;
+        }
+      }
+      @media (min-width: $grid-xl) {
+        .#{$abbrev}-xl-#{$tag} {
+          #{$prop}: #{$size} !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin to_generic_size-with-pixel($map) {
+  @each $prop, $abbrev in $map {
+    @each $size in $micro-sz-list {
+      .#{$abbrev}--#{$size} {
+        #{$prop}: #{$size}px !important;
+      }
+      @media (min-width: $grid-sm) {
+        .#{$abbrev}-sm--#{$size} {
+          #{$prop}: #{$size}px !important;
+        }
+      }
+      @media (min-width: $grid-md) {
+        .#{$abbrev}-md--#{$size} {
+          #{$prop}: #{$size}px !important;
+        }
+      }
+      @media (min-width: $grid-lg) {
+        .#{$abbrev}-lg--#{$size} {
+          #{$prop}: #{$size}px !important;
+        }
+      }
+      @media (min-width: $grid-xl) {
+        .#{$abbrev}-xl--#{$size} {
+          #{$prop}: #{$size}px !important;
+        }
+      }
+    }
+  }
+}

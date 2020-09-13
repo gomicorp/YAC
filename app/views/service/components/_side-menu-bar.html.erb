@@ -1,0 +1,17 @@
+<div class="col-sm-2">
+  <% if @site&.persisted? %>
+    <%= render 'service/components/side-menu-bar/site-menu-group', title: "site @#{@site.name}" do %>
+      <%= card_list_group_item 'installation', '#' %>
+      <%= card_list_group_item 'posts', '#' %>
+      <%= card_list_group_item 'comments', '#' %>
+      <%= card_list_group_item 'analytics', '#' %>
+      <%= card_list_group_item 'settings', edit_organization_site_path(@organization.id, @site.id) %>
+    <% end %>
+  <% end %>
+
+  <%= render 'service/components/side-menu-bar/site-menu-group', title: 'organization' do %>
+    <%= card_list_group_item 'sites', organization_sites_path(@organization.id), badge: @organization.sites.count %>
+    <%= card_list_group_item 'admins', organization_admin_permissions_path(@organization.id) %>
+    <%= card_list_group_item 'settings', edit_organization_path(@organization.id) %>
+  <% end %>
+</div>

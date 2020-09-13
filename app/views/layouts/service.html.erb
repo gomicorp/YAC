@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>YAC | Your Awesome Comment</title>
+  <meta name="description" content="">
+  <meta name="author" content="Fred kim, Gomicorp product engineering team, and YAC contributors">
+
+  <link rel="canonical" href="<%= root_url %>">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="<%= image_url 'yac.png' %>" sizes="32x32" type="image/png">
+  <link rel="icon" href="<%= image_url 'yac.png' %>" sizes="16x16" type="image/png">
+  <meta name="theme-color" content="#563d7c">
+
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_pack_tag 'service', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'service', 'data-turbolinks-track': 'reload' %>
+  <script src="https://kit.fontawesome.com/fe56866126.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+
+<%= render 'layouts/service/nav-bar' %>
+<%#= render 'service/components/main-nav' %>
+
+<main role="main">
+  <%= yield %>
+</main>
+
+<%= render 'layouts/service/footer' %>
+
+</body>
+</html>

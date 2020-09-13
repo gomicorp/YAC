@@ -1,0 +1,53 @@
+<%= render layout: 'layouts/service/page/with-side-menu-bar' do %>
+  <div class="card">
+    <div class="card-header p-4 bg-white text-dark">
+      <h1 class="h4">Editing Organization</h1>
+      <div class="d-flex align-items-center justify-content-between">
+        <small class="text-muted"><%= @organization.name %></small>
+        <div class="text-muted">
+          <small class="d-block"><span class="text-uppercase">since: </span> <%= l @organization.created_at %></small>
+        </div>
+      </div>
+    </div>
+
+    <%= form_for(@organization, local: true) do |form| %>
+      <div class="card-body p-4">
+        <% if @organization.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h2 class="h4 text-center"><%= pluralize(@organization.errors.count, "error") %> prohibited this
+              organization from being saved:</h2>
+
+            <ul>
+              <% @organization.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="row mb-3">
+          <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= form.text_field :name, class: 'form-control', placeholder: 'Put your organization name' %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <%= form.label :api_key, class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-10">
+            <%= form.text_field :api_key, class: 'form-control', readonly: true %>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-white p-4">
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <%= form.submit class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

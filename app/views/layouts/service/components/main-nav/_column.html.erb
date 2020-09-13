@@ -1,0 +1,20 @@
+<%
+  icon = icon
+  text = text
+%>
+
+<li class="nav-item border-right">
+  <div class="btn-group">
+    <button type="button" class="btn bg-white w-100 p-3 text-left dropdown-toggle rounded-0 focus-init" data-toggle="dropdown" aria-expanded="false">
+      <% if icon %>
+        <i class="icon <%= icon %>"></i>
+      <% end %>
+      <span><%= text %></span>
+      <i class="far fa-angle-down"></i>
+    </button>
+
+    <ul class="dropdown-menu dropdown-menu-fit py-0 shadow2">
+      <%= yield %>
+    </ul>
+  </div>
+</li>

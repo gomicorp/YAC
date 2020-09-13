@@ -1,0 +1,17 @@
+<%= render layout: 'layouts/service/page/with-side-menu-bar' do %>
+  <div class="card">
+    <div class="card-header p-4 bg-white text-dark">
+      <h1 class="h4">Edit Site</h1>
+      <div class="d-flex align-items-center justify-content-between">
+        <small class="text-muted"><%= @organization.name %> > <%= @site.name %></small>
+        <div class="text-muted">
+          <small class="d-block"><span class="text-uppercase">since: </span> <%= l @site.created_at %></small>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'form', site: @site, url: organization_site_path(@organization.id, @site.id) %>
+  </div>
+
+  <br>
+<% end %>

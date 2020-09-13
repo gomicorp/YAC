@@ -1,0 +1,2 @@
+module Service::SitesHelper
+end
