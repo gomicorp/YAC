@@ -51,6 +51,10 @@ class Comment < ApplicationRecord
   scope :site_with, ->(site_id) { includes(:post).where(posts: { site_id: site_id }) }
   scope :organization_with, ->(organization_id) { includes(post: :site).where(sites: { organization_id: organization_id }) }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[hide_at rating]
+  end
+
   def displayed?
     hide_at.nil?
   end

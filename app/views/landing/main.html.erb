@@ -5,7 +5,7 @@
     <p>YAC는 고미코퍼레이션에서 자사의 이커머스 플랫폼에 댓글 기능을 지원하기 위해 개발한 애플리케이션입니다.</p>
     <p>
       <% if user_signed_in? %>
-        <%= link_to root_path, class: 'btn btn-primary btn-lg' do %>
+        <%= link_to organizations_path, class: 'btn btn-primary btn-lg' do %>
           <%= image_tag current_user.image_url, width: 30, height: 30, class: 'rounded mr-2' %>
           <span>Continue <%= current_user.name %> »</span>
         <% end %>

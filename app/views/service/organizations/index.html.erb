@@ -14,10 +14,18 @@
     </h2>
 
     <% @organizations.each do |organization| %>
-      <%= link_to organization, class: 'btn btn-light w-100 py-3 my-1' do %>
-        <%= organization.name %>
+      <%= link_to organization_path(organization.id), class: 'btn btn-light w-100 py-3 my-1' do %>
+        <span class="float-left invisible">
+          <span class="badge bg-dark mr-2"><%= organization.sites.count %></span>
+          <span class="text-muted"><span class="far fa-angle-right"></span></span>
+        </span>
 
-        <span class="float-right"><span class="fas fa-arrow-right"></span></span>
+        <span><%= organization.name %></span>
+
+        <span class="float-right">
+          <span class="badge bg-dark mr-2"><%= organization.sites.count %></span>
+          <span class="text-muted"><span class="far fa-angle-right"></span></span>
+        </span>
       <% end %>
     <% end %>
   </div>

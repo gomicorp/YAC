@@ -68,6 +68,10 @@ class User < ApplicationRecord
     transaction { all.each(&:make_profile_image) }
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name email]
+  end
+
   ###
   # Facebook Auth
   #

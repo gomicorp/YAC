@@ -36,6 +36,10 @@ class Post < ApplicationRecord
 
   validates :identifier, presence: true, uniqueness: { scope: :site, case_sensitive: true }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[identifier canonical_url rating_avg comments_count displayed_comments_count locations_count visit_count]
+  end
+
   def update_self_counter_cache
     self.displayed_comments_count = comments.displayed.count
     self.visit_count = locations.sum(:visit_count)

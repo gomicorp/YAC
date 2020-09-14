@@ -3,7 +3,7 @@
     <div class="card-header p-4 bg-white text-dark">
       <div class="d-flex align-items-center justify-content-between">
         <div>
-          <h1 class="h4 text-dark">Comments (<%= @comments.count %>)</h1>
+          <h1 class="h4 text-dark">Comments (<%= @pagy.count %>)</h1>
           <% if @search_query_object.any? %>
             <span class="text-muted">Filtered with: </span>
             <% @search_query_object.each do |key, val| %>

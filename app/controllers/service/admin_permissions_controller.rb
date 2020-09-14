@@ -68,6 +68,7 @@ module Service
 
     def set_organization
       @organization = Organization.find(params[:organization_id])
+      @site = @organization.sites.first
       @admins = @organization.admins.includes(:admin_permissions)
     end
 

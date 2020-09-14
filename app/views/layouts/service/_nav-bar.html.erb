@@ -1,6 +1,6 @@
 <nav id="nav-bar" class="navbar navbar-expand navbar-dark sticky-top bg-dark">
   <div class="container">
-    <%= link_to organization_path(@organization), class: 'navbar-brand' do %>
+    <%= link_to organization_path(@organization.id), class: 'navbar-brand' do %>
       <span class="mr-2">YAC</span>
       <small class="text-white-50">| <%= @organization.name %></small>
     <% end %>
