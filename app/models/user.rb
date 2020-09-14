@@ -64,6 +64,10 @@ class User < ApplicationRecord
     profile_image.attach(io: file, filename: file.basename)
   end
 
+  def self.make_profile_image
+    transaction { all.each(&:make_profile_image) }
+  end
+
   ###
   # Facebook Auth
   #
