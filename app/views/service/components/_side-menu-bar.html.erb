@@ -1,10 +1,10 @@
 <div class="col-sm-2">
   <% if @site&.persisted? %>
     <%= render 'service/components/side-menu-bar/site-menu-group', title: "site @#{@site.name}" do %>
-      <%= card_list_group_item 'installation', '#' %>
-      <%= card_list_group_item 'posts', '#' %>
-      <%= card_list_group_item 'comments', '#' %>
-      <%= card_list_group_item 'analytics', '#' %>
+      <%= card_list_group_item 'installation', "javascript:alert('Coming soon')" %>
+      <%= card_list_group_item 'posts', "javascript:alert('Coming soon')" %>
+      <%= card_list_group_item 'comments', site_comments_path(@site.id) %>
+      <%= card_list_group_item 'analytics', "javascript:alert('Coming soon')" %>
       <%= card_list_group_item 'settings', edit_organization_site_path(@organization.id, @site.id) %>
     <% end %>
   <% end %>

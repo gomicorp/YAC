@@ -1,0 +1,73 @@
+@import './variables/size';
+
+@mixin button2-size($btn2-padding-y, $btn2-padding-x, $btn2-font-size, $btn2-border-radius, $btn-icon-margin) {
+  @include button-size($btn2-padding-y, $btn2-padding-x, $btn2-font-size, $btn2-border-radius);
+
+  & > .icon {
+    margin-right: $btn-icon-margin !important;
+  }
+}
+
+//
+// Base styles
+//
+.btn2 {
+  @extend .btn;
+  @extend .shadow2;
+  @extend .focus-init;
+
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  font-weight: 600;
+  //margin: 0 8px;
+
+  border: 1px solid rgb(216, 210, 222);
+
+  &:hover {
+    border: 1px solid inherit;
+  }
+
+
+  //
+  // Button Sizes
+  //
+  $btn-padding-y-lg: 0.75rem;
+  $btn-padding-y: 0.575rem;
+  $btn-padding-y-sm: 0.5rem;
+  $btn-padding-y-xs: 4px;
+
+  $btn-padding-x-lg: 1.5rem;
+  $btn-padding-x: 1.125rem;
+  $btn-padding-x-sm: 1rem;
+  $btn-padding-x-xs: 6px;
+
+  $btn-font-size-lg: 1.25rem;
+  $btn-font-size: $btn-font-size;
+  $btn-font-size-sm: $btn-font-size-sm;
+  $btn-font-size-xs: 12px;
+
+  $btn-border-radius-lg: $btn-border-radius-lg;
+  $btn-border-radius: $btn-border-radius;
+  $btn-border-radius-sm: $btn-border-radius-sm;
+  $btn-border-radius-xs: 3px;
+
+  $btn-icon-margin-lg: $sz-3;
+  $btn-icon-margin: $sz-2;
+  $btn-icon-margin-sm: $sz-2;
+  $btn-icon-margin-xs: $sz-1;
+
+  @include button2-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-border-radius, $btn-icon-margin);
+
+  &.btn-lg {
+    @include button2-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg, $btn-icon-margin-lg);
+  }
+
+  &.btn-sm {
+    @include button2-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm, $btn-icon-margin-sm);
+  }
+
+  &.btn-xs {
+    @include button2-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-border-radius-xs, $btn-icon-margin-xs);
+  }
+}

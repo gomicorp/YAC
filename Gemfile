@@ -11,6 +11,7 @@ gem 'browser'
 gem 'devise'
 gem 'letter_opener', group: :development
 gem 'omniauth-facebook' # 페이스북 로그인
+gem 'ransack'
 
 gem 'activeadmin'
 gem 'awesome_print'

@@ -15,7 +15,7 @@ module Mock
     private
 
     def set_organization
-      @organization = Organization.last
+      @organization = Organization.find_or_create_by! name: 'YAC'
     end
 
     def set_site

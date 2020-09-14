@@ -1,0 +1,89 @@
+<%
+  post = comment.post
+  author = comment.author
+  identities = author.identities
+%>
+
+<li id="site-comment-<%= comment.id %>" class="list-group-item p-4 d-flex align-items-center justify-content-between <%= 'hidden' if comment.hide? %>">
+  <div class="w-100">
+    <div class="d-flex">
+      <!-- profile image -->
+      <div class="list-group-item--profile_image pr-sm-2">
+        <%= image_tag author.image_url, width: 40, height: 40, class: 'rounded' %>
+      </div>
+
+      <div class="d-flex flex-column justify-content-between flex-fill pl-sm-2">
+        <!-- body -->
+        <div class="list-group-item--body d-flex">
+          <!-- information -->
+          <div class="flex-fill mb-2">
+            <h6 class="mb-1 f-700"><%= author.name %> <small class="ml-2">| <%= [author.email, identities.map(&:provider).join(','), comment.remote_ip].join(' &middot; ').html_safe %></small></h6>
+            <p class="mb-1 text-black-50 f--12"><i><%= l comment.created_at %></i></p>
+            <p class="mb-1 text-black-50 f--12 text-capitalize">
+              <span>status: </span>
+              <% if comment.displayed? %>
+                <span class="text-success">published</span>
+              <% else %>
+                <span class="text-danger f-700">hidden (<%= l comment.hide_at %>)</span>
+              <% end %>
+            </p>
+            <br>
+
+            <!-- content -->
+            <div id="comment-content-wrapper-<%= comment.id %>" class="position-relative overflow-hidden" style="max-height: 76px">
+              <%= comment.content %>
+            </div>
+            <a class="f--12 text-capitalize"
+               href="javascript:void(0)"
+               onclick="
+                document.querySelector('#comment-content-wrapper-<%= comment.id %>').style.maxHeight = 'initial';
+                this.classList.add('d-none');
+               ">expand</a>
+          </div>
+
+          <!-- star rating -->
+          <div class="list-group-item--body-right">
+            <div>
+              <% 5.times do |i| %>
+                <% if i <= comment.rating %>
+                  <span class="star"><i class="fas fa-star"></i></span>
+                <% else %>
+                  <span class="star"><i class="far fa-star"></i></span>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div>
+              <%= link_to "Post##{comment.post_id}", { post_id: comment.post_id } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- control -->
+        <div class="list-group-item--control">
+          <br>
+          <% if comment.displayed? %>
+            <%= link_to site_comment_path(@site.id, comment, comment: { hide_at: Time.zone.now }), method: :put, class: 'text-capitalize btn2 btn-xs btn-outline-info mx-0' do %>
+              <span class="icon"><i class="fas fa-pause"></i></span>
+              <span class="text-capitalize">hide</span>
+            <% end %>
+          <% else %>
+            <%= link_to site_comment_path(@site.id, comment, comment: { hide_at: nil }), method: :put, class: 'text-capitalize btn2 btn-xs btn-outline-success mx-0' do %>
+              <span class="icon"><i class="fas fa-play"></i></span>
+              <span class="text-capitalize">re publish</span>
+            <% end %>
+          <% end %>
+
+          <%#= link_to 'Show', site_comment_path(@site.id, comment) %>
+          <%#= link_to 'Edit', edit_site_comment_path(@site.id, comment) %>
+
+          <%= link_to site_comment_path(@site.id, comment), method: :delete, class: 'btn2 btn-xs btn-outline-danger mx-0', data: {confirm: 'Are you sure?'} do %>
+            <span class="icon"><i class="fas fa-trash"></i></span>
+            <span class="text-capitalize">destroy</span>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</li>

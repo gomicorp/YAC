@@ -1,0 +1,63 @@
+<%= render layout: 'layouts/service/page/with-side-menu-bar' do %>
+  <div class="card">
+    <div class="card-header p-4 bg-white text-dark">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h1 class="h4 text-dark">Comments (<%= @comments.count %>)</h1>
+          <% if @search_query_object.any? %>
+            <span class="text-muted">Filtered with: </span>
+            <% @search_query_object.each do |key, val| %>
+              <span class="badge bg-primary mr-2"><%= key.to_s.humanize %>: <%= val %></span>
+            <% end %>
+          <% end %>
+        </div>
+
+        <% if @search_query_object.any? %>
+          <p class="m-0">
+            <%= link_to site_comments_path(@site.id), class: 'btn btn-outline-secondary text-capitalize shadow2' do %>
+              <span class="icon mr-2"><i class="far fa-redo"></i></span>
+              <span>show all</span>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="site-comments-search" class="card-body p-4 bg-white text-dark">
+      <p class="h5 text-capitalize text-dark">search conditions</p>
+      <%= search_form_for @search, url: search_site_comments_path(@site.id), method: :post do |f| %>
+        <fieldset>
+          <div class="condition_fields-container">
+            <%= f.condition_fields do |ff| %>
+              <%= render 'condition_fields', form: ff %>
+            <% end %>
+          </div>
+
+          <div class="actions d-flex justify-content-between">
+            <div>
+              <%= link_to_add_condition(f, :condition, class: 'add_condition_fields btn2 btn-xs btn-outline-info text-capitalize') do %>
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span>add a condition</span>
+              <% end %>
+            </div>
+
+            <div>
+              <button type="submit" class="btn2 btn-sm btn-outline-primary text-capitalize">
+                <span class="icon"><i class="fas fa-search"></i></span>
+                <span>search</span>
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      <% end %>
+    </div>
+
+    <ul id="site-comments-wrapper" class="list-group list-group-flush">
+      <%= render partial: 'comment', collection: @comments, as: :comment %>
+    </ul>
+
+    <div id="site-comments-footer" class="card-footer bg-white p-4 text-center">
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+<% end %>

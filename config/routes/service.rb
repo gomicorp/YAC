@@ -8,5 +8,11 @@ scope module: :service do
     resources :admin_permissions
   end
 
-  resources :comments
+  scope 'sites/:site_id', as: :site do
+    resources :comments do
+      collection do
+        post '', to: 'comments#index', as: :search
+      end
+    end
+  end
 end

@@ -2,13 +2,12 @@
 // import 'jquery-ui';
 import 'select2/dist/js/select2.full.min';
 
-import { each } from '../util/iterate';
-import onReady from "../util/document-ready";
+import { each } from '../../util/iterate';
 
 import 'select2/dist/css/select2.min.css';
-import './auto-complete.scss';
+import './index.scss';
 
-import template from './auto-complete/template';
+import template from './template';
 
 const renderAutoComplete = (select) => {
   const width = select.dataset.width || '100%';

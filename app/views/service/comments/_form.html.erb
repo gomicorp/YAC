@@ -1,0 +1,42 @@
+<%= form_with(model: [:service, comment], local: true) do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hide_at %>
+    <%= form.datetime_select :hide_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remote_ip %>
+    <%= form.text_field :remote_ip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_id %>
+    <%= form.text_field :post_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author_id %>
+    <%= form.text_field :author_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+@import "../generic/variables/size";
+
+#site-comments-wrapper {
+  .list-group-item {
+    position: relative;
+
+    .list-group-item--body-right {
+      min-width: 150px;
+    }
+
+    .star {
+      color: yellow;
+      text-shadow: 0 0 2px #bbb;
+      font-size: 22px;
+    }
+
+    &.hidden {
+      .list-group-item--profile_image,
+      .list-group-item--body {
+        opacity: .7;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: red;
+      }
+    }
+
+    &:last-child {
+      &.hidden {
+        &:before {
+          border-bottom-left-radius: calc(#{$sz-1} - 1px);
+        }
+      }
+    }
+  }
+}
+
+#site-comments-footer {
+  .pagy-bootstrap-nav {
+    ul.pagination {
+      justify-content: center;
+      margin: 0;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="field row mb-2">
+  <div class="col-sm-3 pr-sm-0">
+    <%= form.attribute_fields do |a| %>
+      <%= a.attribute_select({ associations: [:post, :author] }, { class: 'form-select form-select-sm' }) %>
+    <% end %>
+  </div>
+  <div class="col-sm-3 pr-sm-0">
+    <%= form.predicate_select({}, { class: 'form-select form-select-sm' }) %>
+  </div>
+  <div class="col-sm-3 pr-sm-0">
+    <%= form.value_fields do |v| %>
+      <%= v.text_field :value, class: 'form-control form-control-sm' %>
+    <% end %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= link_to '#', class: 'remove_condition_fields btn2 btn-xs btn-outline-secondary text-capitalize' do %>
+      <span class="icon"><i class="fas fa-times"></i></span>
+      <span>remove this</span>
+    <% end %>
+  </div>
+</div>

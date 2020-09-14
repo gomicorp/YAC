@@ -6,12 +6,13 @@ module Service
     # GET /organizations/1/sites
     # GET /organizations/1/sites.json
     def index
-      @sites = @organization.sites.all
+      @sites = @organization.sites.order(id: :desc).all
     end
 
     # GET /organizations/1/sites/1
     # GET /organizations/1/sites/1.json
     def show
+      redirect_to site_comments_path(@site.id)
     end
 
     # GET /organizations/1/sites/new
