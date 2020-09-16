@@ -24,9 +24,15 @@
               </h6>
             </li>
 
-            <% @organization.sites.each do |site| %>
+            <% @organization.sites.order('id desc').each do |site| %>
               <% next if site.new_record? %>
-              <%= nav_dropdown_item :active_link_to, site.name, organization_site_path(@organization.id, site.id), active: :exclusive, class: 'f--12 py-2 dropdown-item-muted', icon: 'far fa-globe-asia' %>
+              <% link_block = proc do %>
+                <span class="d-flex flex-column" style="line-height: 1">
+                  <span><%= site.name %></span>
+                  <span class="f-2 f-100"><%= site.domain %></span>
+                </span>
+              <% end %>
+              <%= nav_dropdown_item :active_link_to, capture(&link_block), organization_site_path(@organization.id, site.id), active: :exclusive, class: 'f--12 py-2 dropdown-item-muted d-flex align-items-center', icon: 'far fa-globe-asia' %>
             <% end %>
           </ul>
         </li>
