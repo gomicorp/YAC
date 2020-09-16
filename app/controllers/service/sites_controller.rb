@@ -59,7 +59,7 @@ module Service
     def destroy
       @site.destroy
       respond_to do |format|
-        format.html { redirect_to service_sites_url, notice: 'Site was successfully destroyed.' }
+        format.html { redirect_to after_destroy_path, notice: 'Site was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
@@ -81,12 +81,16 @@ module Service
       params.require(:site).permit(:domain, :name, :organization_id)
     end
 
-    def after_create_path
-      organization_site_path(@organization.id, @site)
+    def after_default_path
+      organization_site_path(@organization.id, @site.id)
     end
 
-    def after_update_path
-      organization_site_path(@organization.id, @site)
+    def default_collection_path
+      organization_sites_path(@organization.id)
     end
+
+    alias after_create_path after_default_path
+    alias after_update_path after_default_path
+    alias after_destroy_path default_collection_path
   end
 end

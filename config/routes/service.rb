@@ -10,9 +10,7 @@ scope module: :service do
 
   scope 'sites/:site_id', as: :site do
     resources :comments do
-      collection do
-        post '', to: 'comments#index', as: :search
-      end
+      collection { post '', to: 'comments#index', as: :search }
     end
   end
 end

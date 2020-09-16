@@ -41,6 +41,7 @@ class PostLocation < ApplicationRecord
     uri = URI(uri)
     transaction do
       find_or_create_by!(address: uri.url).tap do |location|
+        location.lock!
         location.visits.create!(uri: uri)
         location.send(:update_counter_cache)
       end

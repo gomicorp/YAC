@@ -91,8 +91,13 @@ module Service
     def after_default_path
       site_comments_path(@site.id)
     end
+
+    def default_collection_path
+      site_comments_path(@site.id)
+    end
+
     alias after_create_path after_default_path
     alias after_update_path after_default_path
-    alias after_destroy_path after_default_path
+    alias after_destroy_path default_collection_path
   end
 end
