@@ -15,7 +15,7 @@ end
 
 desc 'assets:precompile'
 task asset: :environment do
-  rake 'assets:precompile' if Rails.env.production?
+  rake 'assets:precompile' if (Rails.env.production? || Rails.env.staging?)
 end
 
 desc 'Start script: bundle install + db:migration + asset precompile + server restart'

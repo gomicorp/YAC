@@ -1,4 +1,5 @@
 export default {
   development: {},
-  production: {}
+  production: {},
+  staging: {}
 }
