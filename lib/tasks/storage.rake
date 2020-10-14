@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActiveStorage
   class Downloader
     def initialize(blob, tempdir: nil)
