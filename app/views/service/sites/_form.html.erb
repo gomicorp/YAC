@@ -1,5 +1,5 @@
 <%= form_for(site, url: url, local: true) do |form| %>
-  <div class="card-body p-4">
+  <div class="card-body p-4 border-bottom">
     <% if site.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
         <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -35,6 +35,10 @@
       </div>
     </div>
   </div>
+
+  <%= form.fields_for :setting do |setting_form| %>
+    <%= render 'service/sites/setting/form', form: setting_form %>
+  <% end %>
 
   <div class="card-footer bg-white p-4">
     <div class="row">

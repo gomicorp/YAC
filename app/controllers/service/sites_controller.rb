@@ -22,6 +22,7 @@ module Service
 
     # GET /organizations/1/sites/1/edit
     def edit
+      @setting = @site.setting
     end
 
     # POST /organizations/1/sites
@@ -78,7 +79,11 @@ module Service
 
     # Only allow a list of trusted parameters through.
     def site_params
-      params.require(:site).permit(:domain, :name, :organization_id)
+      params.require(:site).permit(:domain, :name, :organization_id, setting_attributes: [
+        :id,
+        :comment_display_created_at,
+        :comment_repeatable
+      ])
     end
 
     def after_default_path
