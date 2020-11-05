@@ -95,7 +95,10 @@ module Service
     end
 
     alias after_create_path after_default_path
-    alias after_update_path after_default_path
     alias after_destroy_path default_collection_path
+
+    def after_update_path
+      edit_organization_site_path(@organization.id, @site.id)
+    end
   end
 end

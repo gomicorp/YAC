@@ -1,4 +1,4 @@
-<% setting = comment.post.site.setting %>
+<% setting = @setting || comment.post.site.setting %>
 
 <div id="YAC-Comment-<%= comment.id %>" class="comment <%= 'hide' if comment.hide? %>">
   <%= comment_component.avatar user: comment.author %>
