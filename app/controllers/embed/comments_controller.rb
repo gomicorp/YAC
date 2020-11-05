@@ -27,6 +27,7 @@ module Embed
       end
 
       @post.locations.visit!(params[:location].presence) if visitable?
+      @setting = @post.site.setting
 
       comments = if user_signed_in? && @organization.admins.where(id: current_user.id).exists?
                    @post.comments.service_admin_scope

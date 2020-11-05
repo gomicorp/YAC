@@ -27,6 +27,7 @@ class Site < ApplicationRecord
 
   has_many :settings, dependent: :destroy
   has_one :setting, -> { order(id: :desc).limit(1) }
+  accepts_nested_attributes_for :setting
 
   has_one_attached :footer_logo
   friendly_id :domain

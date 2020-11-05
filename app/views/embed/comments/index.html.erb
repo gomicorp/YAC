@@ -33,7 +33,7 @@
 
   <br>
   <br>
-  <% if i_can_comment(@comments) %>
+  <% if i_can_comment(@comments, @setting) %>
     <!-- New comment form -->
     <%= comment_component.form comment: @post.comments.new, url: embed_post_comments_path(@post) %>
   <% end %>

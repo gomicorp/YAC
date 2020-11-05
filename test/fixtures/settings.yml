@@ -2,11 +2,12 @@
 #
 # Table name: settings
 #
-#  id                 :bigint           not null, primary key
-#  comment_repeatable :boolean          default(FALSE), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  site_id            :bigint           not null
+#  id                         :bigint           not null, primary key
+#  comment_display_created_at :boolean          default(TRUE), not null
+#  comment_repeatable         :boolean          default(FALSE), not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  site_id                    :bigint           not null
 #
 # Indexes
 #

@@ -1,0 +1,28 @@
+<div class="card-body py-4">
+  <h5 class="card-title mb-3">Setting site resources</h5>
+
+  <div class="row mb-3">
+    <%= form.label :comment, class: 'col-sm-2 col-form-label pt-0' %>
+    <div class="col-sm-10">
+      <!-- setting.comment_display_created_at -->
+      <div class="mb-3">
+        <div class="form-check">
+          <%= form.check_box :comment_display_created_at, class: 'form-check-input' %>
+          <%= form.label :comment_display_created_at, 'Show written time', class: 'form-check-label' %>
+        </div>
+        <div class="form-text"><small><i class="icon fas fa-exclamation-triangle mr-1"></i> If false, "display on" comment's written time. (default: 'true')</small></div>
+      </div>
+      <!-- //setting.comment_display_created_at -->
+
+      <!-- setting.comment_repeatable -->
+      <div class="mb-3">
+        <div class="form-check">
+          <%= form.check_box :comment_repeatable, class: 'form-check-input' %>
+          <%= form.label :comment_repeatable, 'Enable to re-writing comment', class: 'form-check-label' %>
+        </div>
+        <div class="form-text"><small>(default: 'false')</small></div>
+      </div>
+      <!-- //setting.comment_repeatable -->
+    </div>
+  </div>
+</div>

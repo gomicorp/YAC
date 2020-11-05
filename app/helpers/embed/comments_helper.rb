@@ -6,12 +6,15 @@ module Embed
       @comment_component ||= CommentComponent.new(self)
     end
 
-    def i_can_comment(comments)
+    def i_can_comment(comments, setting = nil)
       if user_signed_in?
-        # 내가 작선한 글이 아직 없거나
-        comments.where(author_id: current_user.id).empty? ||
-          # 반복 작성이 가능하게 설정된 사이트일 때.
-          comments.first.post.site.setting.comment_repeatable
+        # 반복 작성이 가능하게 설정된 사이트거나.
+        return true if setting.comment_repeatable
+
+        # 내가 작선한 글이 아직 없거나.
+        return true if comments.where(author_id: current_user.id).empty?
+
+        false
       else
         true
       end
