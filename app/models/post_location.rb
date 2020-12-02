@@ -5,7 +5,7 @@ require 'open-uri'
 # Table name: post_locations
 #
 #  id          :bigint           not null, primary key
-#  address     :string(255)      default(""), not null
+#  address     :text(65535)      not null
 #  visit_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
