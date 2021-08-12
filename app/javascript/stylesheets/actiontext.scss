@@ -12,8 +12,10 @@
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
-      flex: 1 0 33%;
-      padding: 0 0.5em;
+      //flex: 1 0 33%;
+      //padding: 0 0.5em;
+      flex: inherit;
+      padding: .1em;
       max-width: 33%;
     }
 
@@ -22,7 +24,8 @@
       > action-text-attachment,
       > .attachment {
         flex-basis: 50%;
-        max-width: 50%;
+        //max-width: 50%;
+        max-width: fit-content;
       }
     }
   }
