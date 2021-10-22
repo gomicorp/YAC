@@ -29,13 +29,13 @@ class PostLocation < ApplicationRecord
 
   after_save :after_save_callback
   after_destroy :after_destroy_callback
-  after_create do |location|
-    if (Rails.env.production? || Rails.env.staging?) && location.address.present? && !location.post.canonical_url.present?
-      fetch_canonical_url = ->(address) { Nokogiri::HTML.parse(URI.open(address)).css("link[rel='canonical']").attr('href').value }
-      canonical_url = fetch_canonical_url.call(location.address)
-      location.post.update(canonical_url: canonical_url)
-    end
-  end
+#   after_create do |location|
+#     if (Rails.env.production? || Rails.env.staging?) && location.address.present? && !location.post.canonical_url.present?
+#       fetch_canonical_url = ->(address) { Nokogiri::HTML.parse(URI.open(address)).css("link[rel='canonical']").attr('href').value }
+#       canonical_url = fetch_canonical_url.call(location.address)
+#       location.post.update(canonical_url: canonical_url)
+#     end
+#   end
 
   def self.visit!(uri)
     uri = URI(uri)
