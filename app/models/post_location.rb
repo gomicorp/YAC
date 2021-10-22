@@ -39,10 +39,8 @@ class PostLocation < ApplicationRecord
 
   def self.visit!(uri)
     uri = URI(uri)
-    transaction do
-      find_or_create_by!(address: uri.url).tap do |location|
+    find_or_create_by!(address: uri.url).tap do |location|
         location.visits.create!(uri: uri)
-      end
     end
   end
 
