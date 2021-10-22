@@ -41,9 +41,7 @@ class PostLocation < ApplicationRecord
     uri = URI(uri)
     transaction do
       find_or_create_by!(address: uri.url).tap do |location|
-        location.lock!
         location.visits.create!(uri: uri)
-        location.send(:update_counter_cache)
       end
     end
   end
@@ -53,13 +51,11 @@ class PostLocation < ApplicationRecord
   # === Callbacks
   #
   def after_save_callback
-    locations = post.reload.locations
-    update_counter_cache locations
+    update_counter_cache
   end
 
   def after_destroy_callback
-    locations = post.reload.locations
-    update_counter_cache locations
+    update_counter_cache
   end
 
   def update_counter_cache(locations = nil)
